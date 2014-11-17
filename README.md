@@ -8,3 +8,9 @@ Product Backlog of WP5: [https://waffle.io/modelwriter/wp5](https://waffle.io/mo
 
 The product backlog itself is implemented in the [issue tracker](https://github.com/modelwriter/wp5/issues) of this repository.
 
+
+Meeting Minutes
+-----
+
+[[ModelWriter] Meeting Minutes 2014-11-08](https://docs.google.com/a/unitbilisim.com/document/d/1qWxUmuXvgJgKD2eGShgbYlvu_lAHxzqT9o7jkCC-ATY/)
+
