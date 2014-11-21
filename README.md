@@ -2,7 +2,7 @@ Work Package 5
 ===
 **Work Package 5 - Project Management (UNIT)**
 
-`[Product Backlog of WP5]`(https://waffle.io/ModelWriter/WP5)
+`[Product Backlog of WP5](https://waffle.io/ModelWriter/WP5)`
 
 [`Project Coordination Committee (PCC)`](https://github.com/orgs/ModelWriter/teams/pcc)
 
