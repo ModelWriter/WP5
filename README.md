@@ -2,7 +2,9 @@ Work Package 5
 ===
 **Work Package 5 - Project Management (UNIT)**
 
-Product Backlog of WP5: `https://waffle.io/ModelWriter/WP5`
+[`Product Backlog of WP5`](https://waffle.io/ModelWriter/WP5)
+
+[`ModelWriter Meeting Minutes 2014-11-08 v3.0`](https://docs.google.com/a/unitbilisim.com/document/d/1qWxUmuXvgJgKD2eGShgbYlvu_lAHxzqT9o7jkCC-ATY/)
 
 The product backlog itself is implemented in the [issue tracker](https://github.com/modelwriter/wp5/issues) of this repository.
 
@@ -41,6 +43,3 @@ Such PRINCE2 management products (identified as "product Ax" in the next pages) 
     * The **Project Coordination Committee (PCC)** consists of one representative for each participating partner. Such PCC is chaired by the Project Leader (SA), who endorses the overall responsibility for the execution of the contract, for the effective global management of the project, for maintaining contact with the ITEA organization and for monitoring the interaction and the relative progress of the work amongst the partners.
     * The **Technical Coordination Committee (TCC)** made up of the Work Package leaders. The TCC carries the overall technical responsibility of the project. Each work package leader is responsible for the progress, results, achievements and problems (incl. Technical Risks) within his work package, and periodically reports to the TCC. 
 
-# Meeting Minutes
-
-[`ModelWriter Meeting Minutes 2014-11-08 v3.0`](https://docs.google.com/a/unitbilisim.com/document/d/1qWxUmuXvgJgKD2eGShgbYlvu_lAHxzqT9o7jkCC-ATY/)
