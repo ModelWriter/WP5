@@ -12,6 +12,9 @@ The product backlog itself is implemented in the [`issue tracker`](https://githu
 
 [`ModelWriter Meeting Minutes 2014-11-08 v3.0`](https://docs.google.com/a/unitbilisim.com/document/d/1qWxUmuXvgJgKD2eGShgbYlvu_lAHxzqT9o7jkCC-ATY/)
 
+[`ModelWriter 1st Workshop in Izmir, Turkey - Participants`](https://github.com/ModelWriter/WP5/blob/master/Workshops/2015-01-15.md)
+
+
 **Objectives**
 
 The objective of Project Management is to perform overall project governance, and to establish and maintain a communication and controlling infrastructure, which can be `summarized` as:
