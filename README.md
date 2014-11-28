@@ -10,9 +10,14 @@ The product backlog itself is implemented in the [`issue tracker`](https://githu
 
 [`Technical Coordination Committee (TCC)`](https://github.com/orgs/ModelWriter/teams/tcc)
 
-[`ModelWriter Meeting Minutes 2014-11-08 v3.0`](https://docs.google.com/a/unitbilisim.com/document/d/1qWxUmuXvgJgKD2eGShgbYlvu_lAHxzqT9o7jkCC-ATY/)
+Meeting Minutes
+---
+1. [`ModelWriter Meeting Minutes 2014-11-08 v3.0`](https://docs.google.com/a/unitbilisim.com/document/d/1qWxUmuXvgJgKD2eGShgbYlvu_lAHxzqT9o7jkCC-ATY/)
+2. [`ModelWriter 1st International Workshop in Izmir, Turkey - Participants`](https://github.com/ModelWriter/WP5/blob/master/Workshops/2015-01-15.md)
+3. [`2014-12-? International Teleconference Meeting`](https://github.com/ModelWriter/WP5/issues/29)
 
-**Objectives**
+Objectives
+---
 
 The objective of Project Management is to perform overall project governance, and to establish and maintain a communication and controlling infrastructure, which can be `summarized` as:
 
@@ -30,14 +35,18 @@ All tasks will be accomplished by using state of the art management instruments 
 
 In order to further address the technical risks and build a complete product in a `stepped manner`, a number of Agile practices (from `Scrum`, the leading agile development framework) are also considered for use by a number of local teams, who will build their software components according to `an iterative and incremental  manner`, in short time-boxed periods of time (`Sprints of max 4 weeks`). For that, they will maintain a **local Product Backlog** (derived from **WP1’s more general Product Backlog**) and split the work into successive Sprint, each of them leading to an actual piece of software that can potentially be put in the hands of users of feedback and enhancement.
  
-**Expected Results**
+Expected Results
+---
+
 * Project running smoothly.
 
-**Approach for the Work Package**
+Approach for the Work Package
+---
 
 * The PRINCE2 Project Management method (www.prince-officialsite.com) will be applied, with a tailoring appropriate for this ITEA2 project. Accordingly, the management activities and associated management products (e.g. Risk Management Strategy) are directly derived from the PRINCE2’s recommended best practices. Especially, contents of management products are exposed in Appendix A of the official book (ISBN 978-0-11-331059-3).
 
-**Important note**
+Important note
+---
 
 Such PRINCE2 management products (identified as "product Ax" in the next pages) are not necessarily documents nor even deliverables.
 
