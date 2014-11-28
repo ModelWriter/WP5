@@ -14,7 +14,7 @@ Meeting Minutes
 ---
 1. [`ModelWriter Meeting Minutes 2014-11-08 v3.0`](https://docs.google.com/a/unitbilisim.com/document/d/1qWxUmuXvgJgKD2eGShgbYlvu_lAHxzqT9o7jkCC-ATY/)
 2. [`ModelWriter 1st International Workshop in Izmir, Turkey - Participants`](https://github.com/ModelWriter/WP5/blob/master/Workshops/2015-01-15.md)
-3. [`ModelWriter 1st National Workshop in Ankara, Turkey -  Participants`]()
+3. [2014-12-? International Teleconference Meeting](https://github.com/ModelWriter/WP5/issues/29)
 
 Objectives
 ---
