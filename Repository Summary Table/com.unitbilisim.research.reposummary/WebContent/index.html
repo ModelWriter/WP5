@@ -50,8 +50,9 @@
 				<option disabled selected>Select repository</option>
 			</select> 
 			
-			<a href="#" id="ghsubmitbtn" ng-click="fillFields()">Pull Repository Data</a> <br> <br>
-
+			<a href="#" id="ghsubmitbtn" ng-click="fillFields()">Pull Repository Data</a>
+			<a href="#" id="ghsubmitbtn" ng-click="fillTableValues()">Fill Table Values</a> <br> <br>
+			
 			<div id="selection">
 
 				<select name="select-milestone" id="select-milestone">
@@ -70,9 +71,8 @@
 					<option>5d</option>
 				</select><br>
 				<br>
-
 			</div>
-
+			
 			<button id="ghsubmitbtn" onclick="drawTable()">Summary</button> 
 					
 			<div id="table_div"></div>
