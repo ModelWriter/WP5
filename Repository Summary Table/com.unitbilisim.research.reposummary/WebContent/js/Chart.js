@@ -29,10 +29,10 @@ function drawTable() {
 
 
 	var e = document.getElementById("select-milestone");
-	var selectedMilestone = "Sprint #3"; //e.options[e.selectedIndex].value;
+	var selectedMilestone = "Sprint #2"; //e.options[e.selectedIndex].value;
 
 	var e = document.getElementById("select-label");
-	var selectedLabel = "todo"; //e.options[e.selectedIndex].value;
+	var selectedLabel = e.options[e.selectedIndex].value;
 
 	var e = document.getElementById("select-user");
 	var selectedUser = e.options[e.selectedIndex].value;
@@ -76,7 +76,7 @@ function drawTable() {
 	conditionString += ')';
 
 
-	eval("alert(conditionString);");
+	// eval("alert(conditionString);");
 
 	for(i = 0; i < issueTable.length; i++) {
 
