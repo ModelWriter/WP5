@@ -87,11 +87,7 @@ angular.module('GitAPI', [])
 
 			}
 
-			alert(data.length);
-			alert(data.count);
 			var table = new google.visualization.Table(document.getElementById('table_div'));
-			alert(table.count);
-			alert(table.length);
 				table.draw(data, {showRowNumber: true});
 				
 	   }
