@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="GitAPI">
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 
@@ -8,69 +8,64 @@
 <title>Demo</title>
 <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="js/gitapi.js"></script>
+<script type="text/javascript" src="js/HandlingData.js"></script>
 
- <script type="text/javascript">
-      google.load("visualization", "1", {packages:["table"]});
-      
-      //google.setOnLoadCallback(drawTable);
-
-      function drawTable() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Name');
-        data.addColumn('number', 'Salary');
-        data.addColumn('boolean', 'Full Time Employee');
-        data.addRows([
-          ['Mike',  {v: 10000, f: '$10,000'}, true],
-          ['Jim',   {v:8000,   f: '$8,000'},  false],
-          ['Alice', {v: 12500, f: '$12,500'}, true],
-          ['Bob',   {v: 7000,  f: '$7,000'},  true]
-        ]);
-
-        var table = new google.visualization.Table(document.getElementById('table_div'));
-
-        table.draw(data, {showRowNumber: true});
-      }
-    </script>
 </head>
 
-<body ng-controller="GitHubCtrl">
+<body>
 	
-	<div id="w">
+	<div id="w"  ng-controller="GitHubCtrl">
 		<div>
 			<h1>Repository Summary Table</h1>
 
 			<p>Enter a single Github username below and click the button to
 				display profile info.</p>
 
-			<input type="text" id="ghorganizationname" ng-model="orgname" placeholder="GitHub organization name..."> 
-			<a href="#" id="ghsubmitbtn" ng-click="getRepos()">Get Repos</a> 
+			<input type="text" id="ghorganizationname" style="float:left;" ng-model="orgname" placeholder="GitHub organization name..."> 
+			<a href="#" id="ghsubmitbtn" style="float:left; margin-left:10px;" ng-click="getRepos()">Get Repos</a> 
 				
-		    <select name="select-repository" id="select-repository" ng-change="fillFields()">
-				<option disabled selected>Select repository</option>
-			</select> 
 			
-			<a href="#" id="ghsubmitbtn" ng-click="fillFields()">Pull Repository Data</a>
-			<a href="#" id="ghsubmitbtn" ng-click="fillTableValues()">Fill Table Values</a> <br> <br>
+   				
+		    <select ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" ng-options="repository.name for repository in repos">
+				<!--option disabled selected>Select repository</option-->
+				<option value="">{{selectedRepo}}</option>
+			</select> 
+			<div ng-show="reposNotFound">
+      		<h2>No Repo Info Found</h2>
+   			</div> 
 			
 			<div id="selection">
 
-				<select name="select-milestone" id="select-milestone">
-					<option disabled selected>Select milestone</option>
-					<option>Sprint 1</option>
-					<option>Sprint 2</option>
-				</select><br>
-				<br> <select name="select-user" id="select-user">
-					<option disabled selected>Select user</option>
-					<option>ffurkAn</option>
-					<option>ferhaterata</option>
-				</select><br>
-				<br> <select name="select-label" id="select-label">
-					<option disabled selected>Select label</option>
-					<option>T.1.0.1 -</option>
-					<option>5d</option>
-				</select><br>
-				<br>
+				<select ng-show="milestonesLoaded" ng-model="selectedMilestone" ng-options="milestone.title for milestone in milestones">
+      				<!--option disabled selected>Select milestone</option-->
+      				<option value="">{{selectedMilestone}}</option>
+    			</select>
+    			<div ng-show="milestonesNotFound">
+      				<h2>No Milestone info found</h2>
+   				</div>
+    			
+				<br><br> 
+				
+				<select ng-show="usersLoaded" ng-model="selectedUser" ng-options="user.login for user in users">
+      				<!--option disabled selected>Select user</option-->
+      				<option value="">{{selectedUser}}</option>
+    			</select>
+    			<div ng-show="usersNotFound">
+      				<h2>No User Info Found</h2>
+   				</div>
+    			
+				<br><br>
+				
+				<select ng-show="labelsLoaded"  ng-model="selectedLabel" ng-options="label.name for label in labels">
+      				<!--option disabled selected>Select label</option-->
+      				<option value="">{{selectedLabel}}</option>
+    			</select>
+    			<div ng-show="labelsNotFound">
+	      			<h2>No Label Info Found</h2>
+				</div>
+				
+				<br><br>
+				
 			</div>
 			
 			<button id="ghsubmitbtn" onclick="drawTable()">Summary</button> 
@@ -78,7 +73,7 @@
 			<div id="table_div"></div>
 
 			<div id="ghapidata" class="clearfix"></div>
-		</div>
+		</div></div>
 </body>
 
 </html>
