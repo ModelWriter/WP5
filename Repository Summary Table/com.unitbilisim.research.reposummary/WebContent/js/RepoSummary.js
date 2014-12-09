@@ -4,6 +4,7 @@ var milestoneList = [];
 var labelList = [];
 var userList = [];
 var issueTable = [];
+
 google.load("visualization", "1", {packages:["table"]});
 
 angular.module('GitAPI', [])
@@ -80,12 +81,16 @@ angular.module('GitAPI', [])
 
 			}
 
+			alert(data.length);
+			alert(data.count);
 			var table = new google.visualization.Table(document.getElementById('table_div'));
-
+			alert(table.count);
+			alert(table.length);
 				table.draw(data, {showRowNumber: true});
-		   
+				
 	   }
 	   
+	   // Get Repositories
 	   $scope.getRepos = function() {
 			$http.get("https://api.github.com/orgs/"+$scope.orgname+"/repos").success(function(data) {
 						alert($scope.orgname);
@@ -93,6 +98,9 @@ angular.module('GitAPI', [])
 						$scope.repos = data;				
 						$scope.selectedRepo = null;									
 						$scope.reposLoaded = true;
+						$scope.buttonLoaded = true;
+						
+						issueTable = [];
 					}).error(function () {
 						   
 						   $scope.reposNotFound = true;
@@ -118,7 +126,7 @@ angular.module('GitAPI', [])
 			 $scope.milestonesNotFound = true;
 		});
 		
-		$http.get("https://api.github.com/repos/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/contributors").success(function (data) {
+		$http.get("https://api.github.com/repos/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/assignees").success(function (data) {
 			
 			//alert("user içi");
 			$scope.users = data;
@@ -142,15 +150,20 @@ angular.module('GitAPI', [])
 			 $scope.labelsNotFound = true;
 		});
 		
-		$http.get("https://api.github.com/orgs/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/issues").success(function (data) {//Getting issues for org and repo
+		$http.get("https://api.github.com/repos/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/issues").success(function (data) {//Getting issues for org and repo
 			
+			//alert("issue get");
 			for(j in data){
 				
 					issueList.push(data[j]);
 			}
 			//$scope.issueFound = data.length > 0;
 			issueParse();
-         });
+         }).error(function (data,status,as, config) {
+ 			
+        	 alert(data+status+config);
+        	 
+		});
 		
 		function issueParse (){		
 		
@@ -283,7 +296,6 @@ angular.module('GitAPI', [])
 		}
 	
 	}
-	*/
-	
+	*/	
 	
 });

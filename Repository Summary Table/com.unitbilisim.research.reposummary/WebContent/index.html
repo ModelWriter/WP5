@@ -31,6 +31,7 @@
 			<a href="#" id="ghsubmitbtn" style="float:left; margin-left:10px;" ng-click="getRepos()">Get Repos</a> 
 				
 			
+   			<div style="clear:both;"></div>
    				
 		    <select ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" ng-options="repository.name for repository in repos">
 				<!--option disabled selected>Select repository</option-->
@@ -39,6 +40,8 @@
 			<div ng-show="reposNotFound">
       		<h2>No Repo Info Found</h2>
    			</div> 
+			
+			<br><br>
 			
 			<div id="selection" style="clear:both;">
 
@@ -74,9 +77,10 @@
 				
 			</div>
 			
-			<button id="ghsubmitbtn" ng-click="drawChart()">Summary</button> 
+			<button ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="drawChart()">Summary</button> 
 					
 			<div id="table_div"></div>
+
 
 			<div id="ghapidata" class="clearfix"></div>
 		</div>
