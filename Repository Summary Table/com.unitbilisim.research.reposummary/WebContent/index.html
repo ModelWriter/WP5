@@ -8,9 +8,8 @@
 <title>Demo</title>
 <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="js/HandlingData.js"></script>
-<!-- <script type="text/javascript" src=js/Chart.js></script>
- -->
+<script type="text/javascript" src="js/RepoSummary.js"></script>
+
  
  <script type="text/javascript">
 
@@ -24,8 +23,8 @@
 		<div ng-controller="GitHubCtrl">
 			<h1>Repository Summary Table</h1>
 
-			<p>Enter a single Github username below and click the button to
-				display profile info.</p>
+			<p>Enter a single Github organization name below and click the button to
+				repositories and issues.</p>
 
 			<input type="text" id="ghorganizationname" style="float:left;" ng-model="orgname" placeholder="GitHub organization name..."> 
 			<a href="#" id="ghsubmitbtn" style="float:left; margin-left:10px;" ng-click="getRepos()">Get Repos</a> 

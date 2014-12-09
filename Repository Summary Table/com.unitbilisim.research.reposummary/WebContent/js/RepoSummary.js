@@ -13,6 +13,10 @@ angular.module('GitAPI', [])
 
 	  var reposNotFound = false;
 
+	  var selectedLabel = "";
+	  var selectedMilestone = "";
+	  var selectedUser = "";
+	  
 	   $scope.drawChart = function() {
 		   
 		   var data = new google.visualization.DataTable();
@@ -25,23 +29,25 @@ angular.module('GitAPI', [])
 			data.addColumn('string', 'Effort Required');
 			//data.addColumn('number', 'Total Hours');
 
+			if($scope.selectedMilestone != null)
+				selectedMilestone = $scope.selectedMilestone.title; //"Sprint #2"; //e.options[e.selectedIndex].value;
 
-			var selectedMilestone = $scope.selectedMilestone.title; //"Sprint #2"; //e.options[e.selectedIndex].value;
-
-			var selectedLabel = $scope.selectedLabel.name; //"in progress";
-
-			var selectedUser = $scope.selectedUser.login; //"ffurkAn";
+			if($scope.selectedLabel != null)
+				selectedLabel = $scope.selectedLabel.name; //"in progress";
+			
+			if($scope.selectedUser != null)
+				selectedUser = $scope.selectedUser.login; //"ffurkAn";
 
 			var conditionCount = 0;
 
 			var conditionString = "if(";
 
-			if(selectedMilestone != "Select milestone"){
+			if(selectedMilestone != ""){
 				conditionString += '"' + selectedMilestone + '" == issueTable[i][5] ';
 				conditionCount++;
 			}
 
-			if(selectedUser != "Select user"){
+			if(selectedUser != ""){
 				if(conditionCount > 0){
 					conditionString += ' && ';
 				}
@@ -49,7 +55,7 @@ angular.module('GitAPI', [])
 				conditionCount++;
 			}
 
-			if(selectedLabel != "Select label"){
+			if(selectedLabel != ""){
 				if(conditionCount > 0){
 
 					conditionString += ' && (';
@@ -71,7 +77,7 @@ angular.module('GitAPI', [])
 			conditionString += ')';
 
 
-			// eval("alert(conditionString);");
+			 eval("alert(conditionString);");
 
 			for(i = 0; i < issueTable.length; i++) {
 
@@ -93,12 +99,12 @@ angular.module('GitAPI', [])
 	   // Get Repositories
 	   $scope.getRepos = function() {
 			$http.get("https://api.github.com/orgs/"+$scope.orgname+"/repos").success(function(data) {
-						alert($scope.orgname);
+						//alert($scope.orgname);
 						
 						$scope.repos = data;				
 						$scope.selectedRepo = null;									
 						$scope.reposLoaded = true;
-						$scope.buttonLoaded = true;
+						
 						
 						issueTable = [];
 					}).error(function () {
@@ -111,7 +117,7 @@ angular.module('GitAPI', [])
 	   
 	$scope.fillFields = function(){
 		
-
+		$scope.buttonLoaded = true;
 		alert($scope.selectedRepo.name);
 		// "https://api.github.com/orgs/"+$scope.orgname+"/"+$scope.selectedRepo.name+"
 		$http.get("https://api.github.com/repos/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/milestones").success(function (data) {			
