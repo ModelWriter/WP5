@@ -9,13 +9,19 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="js/HandlingData.js"></script>
+<!-- <script type="text/javascript" src=js/Chart.js></script>
+ -->
+ 
+ <script type="text/javascript">
 
+
+ </script>
 </head>
 
 <body>
 	
-	<div id="w"  ng-controller="GitHubCtrl">
-		<div>
+	<div id="w"  >
+		<div ng-controller="GitHubCtrl">
 			<h1>Repository Summary Table</h1>
 
 			<p>Enter a single Github username below and click the button to
@@ -68,12 +74,15 @@
 				
 			</div>
 			
-			<button id="ghsubmitbtn" onclick="drawTable()">Summary</button> 
+			<button id="ghsubmitbtn" ng-click="drawChart()">Summary</button> 
 					
 			<div id="table_div"></div>
 
 			<div id="ghapidata" class="clearfix"></div>
-		</div></div>
+		</div>
+		
+		
+	</div>
 </body>
 
 </html>

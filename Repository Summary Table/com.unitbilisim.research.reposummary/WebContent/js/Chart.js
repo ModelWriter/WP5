@@ -16,78 +16,19 @@ google.load("visualization", "1", {packages:["table"]});
 
 function drawTable() {
 
-
 	var data = new google.visualization.DataTable();
-	data.addColumn('number', 'Nr.');
-	data.addColumn('string', 'Issue');
-	data.addColumn('string', 'State');
-	data.addColumn('string', 'Task');
-	data.addColumn('string', 'Assignee');
-	data.addColumn('string', 'Milestone');
-	data.addColumn('string', 'Effort Required');
-	//data.addColumn('number', 'Total Hours');
+	   data.addColumn('string', 'Name');
+	   data.addColumn('number', 'Salary');
+	   data.addColumn('boolean', 'Full Time Employee');
+	   data.addRows([
+	     ['Mike',  {v: 10000, f: '$10,000'}, true],
+	     ['Jim',   {v:8000,   f: '$8,000'},  false],
+	     ['Alice', {v: 12500, f: '$12,500'}, true],
+	     ['Bob',   {v: 7000,  f: '$7,000'},  true]
+	   ]);
 
+	   var table = new google.visualization.Table(document.getElementById('table_div'));
 
-	var e = document.getElementById("select-milestone");
-	var selectedMilestone = "Sprint #2"; //e.options[e.selectedIndex].value;
-
-	var e = document.getElementById("select-label");
-	var selectedLabel = e.options[e.selectedIndex].value;
-
-	var e = document.getElementById("select-user");
-	var selectedUser = e.options[e.selectedIndex].value;
-
-	var conditionCount = 0;
-
-	var conditionString = "if(";
-
-	if(selectedMilestone != "Select milestone"){
-		conditionString += '"' + selectedMilestone + '" == issueTable[i][5] ';
-		conditionCount++;
-	}
-
-	if(selectedUser != "Select user"){
-		if(conditionCount > 0){
-			conditionString += ' && ';
-		}
-		conditionString += '"' + selectedUser + '" == issueTable[i][4] ';
-		conditionCount++;
-	}
-
-	if(selectedLabel != "Select label"){
-		if(conditionCount > 0){
-
-			conditionString += ' && (';
-			conditionString += '"' + selectedLabel + '" == issueTable[i][2] || "' 
-								   + selectedLabel + '" == issueTable[i][3] || "' 
-								   + selectedLabel + '" == issueTable[i][6] ';
-			conditionString += ')';
-
-		}else{
-			conditionString += '"' + selectedLabel + '" == issueTable[i][2] || "' 
-								   + selectedLabel + '" == issueTable[i][3] || "'
-								   + selectedLabel + '" == issueTable[i][6] ';
-		}
-
-		conditionCount++;
-	}
-
-
-	conditionString += ')';
-
-
-	// eval("alert(conditionString);");
-
-	for(i = 0; i < issueTable.length; i++) {
-
-		//eval("alert(issueTable[i]);");
-			eval(conditionString + "{ " + 
-					"data.addRow(issueTable[i]); }");
-
-	}
-
-	var table = new google.visualization.Table(document.getElementById('table_div'));
-
-		table.draw(data, {showRowNumber: true});
+	   table.draw(data, {showRowNumber: true});
 
 }
