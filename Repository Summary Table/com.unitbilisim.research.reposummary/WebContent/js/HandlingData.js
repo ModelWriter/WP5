@@ -3,13 +3,7 @@ var issueList = [];
 var milestoneList = [];
 var labelList = [];
 var userList = [];
-var issueTable = [ 
-                  [2,	"issue1",		"done",			"T.1.0.2",	"ffurkAn",		"Sprint #1",	"3d"],
-                  [4,	"issueasdas",	"in progress",	"T.1.3.2",	"ffurkAn",		"Sprint #2",	"4h"],
-                  [7,	"issue qwe",	"in progress",	"T.1.0.4",	"AhmetCahit",	"Sprint #2",	"5d"],
-                  [11,	"issue ffr",	"todo",			"T.2.2.4",	"ferhaterata",	"Sprint #3",	"1d"],
-                  [15,	"issue 7776",	"done",			"T.2.4.5",	"ferhaterata",	"Sprint #3",	"2h"]
-                  ];
+var issueTable = [];
 google.load("visualization", "1", {packages:["table"]});
 
 angular.module('GitAPI', [])
@@ -31,11 +25,11 @@ angular.module('GitAPI', [])
 			//data.addColumn('number', 'Total Hours');
 
 
-			var selectedMilestone = "Sprint #2"; //e.options[e.selectedIndex].value;
+			var selectedMilestone = $scope.selectedMilestone.title; //"Sprint #2"; //e.options[e.selectedIndex].value;
 
-			var selectedLabel = "in progress";
+			var selectedLabel = $scope.selectedLabel.name; //"in progress";
 
-			var selectedUser = "ffurkAn";
+			var selectedUser = $scope.selectedUser.login; //"ffurkAn";
 
 			var conditionCount = 0;
 
@@ -91,6 +85,7 @@ angular.module('GitAPI', [])
 				table.draw(data, {showRowNumber: true});
 		   
 	   }
+	   
 	   $scope.getRepos = function() {
 			$http.get("https://api.github.com/orgs/"+$scope.orgname+"/repos").success(function(data) {
 						alert($scope.orgname);
@@ -110,9 +105,10 @@ angular.module('GitAPI', [])
 		
 
 		alert($scope.selectedRepo.name);
-		$http.get("https://api.github.com/orgs/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/milestones").success(function (data) {			
+		// "https://api.github.com/orgs/"+$scope.orgname+"/"+$scope.selectedRepo.name+"
+		$http.get("https://api.github.com/repos/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/milestones").success(function (data) {			
 			
-			alert("milestone içi");
+			//alert("milestone içi");
 			$scope.milestones = data;
 			$scope.selectedMilestone = null;
 			$scope.milestonesLoaded = true;
@@ -122,9 +118,9 @@ angular.module('GitAPI', [])
 			 $scope.milestonesNotFound = true;
 		});
 		
-		$http.get("https://api.github.com/orgs/"+$scope.orgname+"/"+$scope.selectedRepo.name+"contributors").success(function (data) {
+		$http.get("https://api.github.com/repos/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/contributors").success(function (data) {
 			
-			alert("user içi");
+			//alert("user içi");
 			$scope.users = data;
 			$scope.selectedUser = null;
 			$scope.usersLoaded = true;
@@ -134,9 +130,9 @@ angular.module('GitAPI', [])
 			 $scope.usersNotFound = true;
 		});
 		
-		$http.get("https://api.github.com/orgs/"+$scope.orgname+"/"+$scope.selectedRepo.name+"labels").success(function (data) {
+		$http.get("https://api.github.com/repos/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/labels").success(function (data) {
 			
-			alert("label içi");
+			//alert("label içi");
 			$scope.labels = data;
 			$scope.selectedLabel = null;
 			$scope.labelsLoaded = true;
@@ -145,23 +141,15 @@ angular.module('GitAPI', [])
 
 			 $scope.labelsNotFound = true;
 		});
-	
-	}
-	
 		
-	$scope.fillTableValues = function (){
-		
-		var e = document.getElementById("select-repository");
-		var repoName = e.options[e.selectedIndex].value;
-
-		$http.get("https://api.github.com/repos/"+$scope.orgname+"/"+repoName+"/issues").success(function (data) {//Getting issues for org and repo
-	
+		$http.get("https://api.github.com/orgs/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/issues").success(function (data) {//Getting issues for org and repo
+			
 			for(j in data){
 				
 					issueList.push(data[j]);
 			}
 			//$scope.issueFound = data.length > 0;
-			İssuePars();
+			issueParse();
          });
 		
 		function issueParse (){		
@@ -178,7 +166,7 @@ angular.module('GitAPI', [])
 				value.push(issueList[i].milestone.title);
 				findEffort(value,issueList[i].labels);
 				
-				TableValues.push(value);// Constracting table row...
+				issueTable.push(value);// Constracting table row...
 			}
 		}
 		
@@ -222,5 +210,80 @@ angular.module('GitAPI', [])
 		}
 	
 	}
+	
+		/*
+	$scope.fillissueTable = function (){
+		
+
+		$http.get("https://api.github.com/repos/"+$scope.orgname+"/"+repoName+"/issues").success(function (data) {//Getting issues for org and repo
+	
+			for(j in data){
+				
+					issueList.push(data[j]);
+			}
+			//$scope.issueFound = data.length > 0;
+			İssuePars();
+         });
+		
+		function issueParse (){		
+		
+			for(var i in issueList){// For every issue in List
+				
+				var value = [];// Table Row
+				
+				value.push(issueList[i].number);// Filling row elements...
+				value.push(issueList[i].title);
+				findState(value,issueList[i].labels);
+				findTask(value,issueList[i].labels);
+				value.push(issueList[i].assignee.login);
+				value.push(issueList[i].milestone.title);
+				findEffort(value,issueList[i].labels);
+				
+				issueTable.push(value);// Constracting table row...
+			}
+		}
+		
+		function findState(v,labels){// Parsing label which is state status...(v is cell of the table)
+			
+			for(i in labels){
+				
+				if(labels[i].name == "todo" || labels[i].name == "in progress" || labels[i].name == "done"){//find state of the issue
+					v.push(labels[i].name);
+					return;
+				}
+			}
+			v.push("null");// If there is no assignment with state...
+		}
+		
+		function findTask(v,labels){// Parsing label which is task...
+			
+			var str;
+			
+			for(i in labels){
+				
+				str = labels[i].name;		
+				if(str.charAt(0) == 'T' && !(isNaN(parseInt(str.charAt(1))))){// if first element T and next is number...
+					v.push(str);
+					return;
+				}
+			}
+			v.push("null");// If there is no task assignment...
+		}
+		
+		function findEffort(v,labels){// Find effort date like 2d , 1h
+			
+			for(var i = 0; i < labels.length; i++){
+				
+				if(labels[i].name.match(/[1,2,4,8][h]|[2,3,5,10][d]/) != null){//Compare label value with work our regular exp. ...
+					v.push(labels[i].name);
+					return;
+				}	
+			}
+			v.push("null");	// If there is no work our assignment...
+		}
+	
+	}
+	*/
+	
 	
 });

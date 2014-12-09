@@ -40,9 +40,9 @@
       		<h2>No Repo Info Found</h2>
    			</div> 
 			
-			<div id="selection">
+			<div id="selection" style="clear:both;">
 
-				<select ng-show="milestonesLoaded" ng-model="selectedMilestone" ng-options="milestone.title for milestone in milestones">
+				<select ng-show="milestonesLoaded"  ng-model="selectedMilestone" ng-options="milestone.title for milestone in milestones">
       				<!--option disabled selected>Select milestone</option-->
       				<option value="">{{selectedMilestone}}</option>
     			</select>
@@ -62,7 +62,7 @@
     			
 				<br><br>
 				
-				<select ng-show="labelsLoaded"  ng-model="selectedLabel" ng-options="label.name for label in labels">
+				<select ng-show="labelsLoaded" ng-model="selectedLabel" ng-options="label.name for label in labels">
       				<!--option disabled selected>Select label</option-->
       				<option value="">{{selectedLabel}}</option>
     			</select>
