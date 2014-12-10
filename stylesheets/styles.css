@@ -38,8 +38,12 @@ a {
   text-decoration:none;
 }
 
+p {
+	font-size:15px;
+}
+
 a small {
-  font-size:15px;
+  font-size:12px;
   color:#777;
   margin-top:-0.6em;
   display:block;
