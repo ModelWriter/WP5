@@ -1,0 +1,91 @@
+<!doctype html>
+<html ng-app="GitAPI">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html">
+<title>Repository Summary Table</title>
+<link rel="stylesheet" type="text/css" media="all" href="stylesheets/RepoSummary.css">
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="javascript/RepoSummary.js"></script>
+
+ 
+ <script type="text/javascript">
+
+
+ </script>
+</head>
+
+<body>
+	
+	<div id="w"  >
+		<div ng-controller="GitHubCtrl">
+			<h1>Repository Summary Table</h1>
+
+			<p>Enter a single Github organization name below and click the button to
+				repositories and issues.</p>
+
+			<input type="text" id="ghorganizationname" style="float:left;" ng-model="orgname" placeholder="GitHub organization name..."> 
+			<a href="#" id="ghsubmitbtn" style="float:left; margin-left:10px;" ng-click="getRepos()">Get Repos</a> 
+				
+			
+   			<div style="clear:both;"></div>
+   				
+		    <select ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" ng-options="repository.name for repository in repos">
+				<!--option disabled selected>Select repository</option-->
+				<option value="">{{selectedRepo}}</option>
+			</select> 
+			<div ng-show="reposNotFound">
+      		<h2>No Repo Info Found</h2>
+   			</div> 
+			
+			<br><br>
+			
+			<div id="selection" style="clear:both;">
+
+				<select ng-show="milestonesLoaded"  ng-model="selectedMilestone" ng-options="milestone.title for milestone in milestones">
+      				<!--option disabled selected>Select milestone</option-->
+      				<option value="">{{selectedMilestone}}</option>
+    			</select>
+    			<div ng-show="milestonesNotFound">
+      				<h2>No Milestone info found</h2>
+   				</div>
+    			
+				<br><br> 
+				
+				<select ng-show="usersLoaded" ng-model="selectedUser" ng-options="user.login for user in users">
+      				<!--option disabled selected>Select user</option-->
+      				<option value="">{{selectedUser}}</option>
+    			</select>
+    			<div ng-show="usersNotFound">
+      				<h2>No User Info Found</h2>
+   				</div>
+    			
+				<br><br>
+				
+				<select ng-show="labelsLoaded" ng-model="selectedLabel" ng-options="label.name for label in labels">
+      				<!--option disabled selected>Select label</option-->
+      				<option value="">{{selectedLabel}}</option>
+    			</select>
+    			<div ng-show="labelsNotFound">
+	      			<h2>No Label Info Found</h2>
+				</div>
+				
+				<br><br>
+				
+			</div>
+			
+			<button ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="drawChart()">Summary</button> 
+					
+			<div id="table_div"></div>
+
+
+			<div id="ghapidata" class="clearfix"></div>
+		</div>
+		
+		<p> UNIT Technologies and Information R&D Ltd.</p>
+	</div>
+</body>
+
+</html>
