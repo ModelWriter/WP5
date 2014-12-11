@@ -19,6 +19,9 @@ angular.module('GitAPI', [])
 	  
 	  $scope.drawChart = function() {
 		   
+		  totalHoursToDo = 0;
+		  totalHoursDone = 0;
+		  totalHoursInProgress = 0;
 	      table.clearChart();
 	   	  var selectedUser = "all";
 		  var selectedMilestone = "all";
@@ -104,21 +107,61 @@ angular.module('GitAPI', [])
 
 		alert(conditionString);
 		
+		var totalHours = "";
+		
+		totalHours += 'if(issueTable[i][6].charAt(1) == "h"){';
+			
+		totalHours += '	var h = parseInt(issueTable[i][6].charAt(0));'
+
+		totalHours += '	if(issueTable[i][2] == "todo"){'
+		totalHours += '	totalHoursToDo = totalHoursToDo + h;}'
+		totalHours += 'if(issueTable[i][2] == "done"){'
+		totalHours += 'totalHoursDone = totalHoursDone + h;}'
+
+		totalHours += 'if(issueTable[i][2] == "in progress"){'
+		totalHours += '	totalHoursInProgress = totalHoursInProgress + h;}'											
+
+		totalHours += '	}'
+
+
+		totalHours += 'if(issueTable[i][6].charAt(1) == "d"){'
+
+		totalHours += '	var d = parseInt(issueTable[i][6].charAt(0));'
+
+		totalHours += '	if(issueTable[i][2] == "todo"){'
+		totalHours += 'totalHoursToDo = totalHoursToDo + d*8;}'
+			
+		totalHours += '	if(issueTable[i][2] == "done"){'
+		totalHours += '		totalHoursDone = totalHoursDone + d*8;}'
+
+		totalHours += '	if(issueTable[i][2] == "in progress"){'
+		totalHours += '		totalHoursInProgress = totalHoursInProgress + d*8;}'
+			
+	    totalHours += '	}';
+	
+		
 		if(issueTable.length > 0){
 			
 			for(i = 0; i < issueTable.length; i++) {
 
 				//eval("alert(issueTable[i]);");
 					eval(conditionString + "{ " + 
-							"data.addRow(issueTable[i]); }");
-
+							"data.addRow(issueTable[i]);"+ totalHours +"}");
+					
+					
+				
+				
+					
+					
+				
 			}
-
-				table.draw(data, {showRowNumber: true});
-		}
-		
 			
-	  }
+			table.draw(data, {showRowNumber: true});
+			alert("Done:"+totalHoursDone+", \n in progress:"+totalHoursInProgress+"\n todo:"+totalHoursToDo);
+			
+			
+		}
+	   }
 	   
 	   // Get Repositories
 	   $scope.getRepos = function() {
