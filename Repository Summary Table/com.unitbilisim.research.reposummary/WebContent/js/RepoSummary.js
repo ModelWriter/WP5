@@ -123,7 +123,8 @@ angular.module('GitAPI', [])
 	   // Get Repositories
 	   $scope.getRepos = function() {
 			$http.get("https://api.github.com/orgs/"+$scope.orgname+"/repos").success(function(data) {
-
+						
+						$scope.reposNotFound = false;
 						$scope.repos = data;				
 						$scope.selectedRepo = null;									
 						$scope.reposLoaded = true;
@@ -145,6 +146,10 @@ angular.module('GitAPI', [])
 		labelList = [];
 		userList = [];
 		issueTable = [];
+		$scope.labelsNotFound = false;
+		$scope.usersNotFound = false;
+		$scope.milestonesNotFound = false;
+		$scope.statesNotFound = false;
 		
 				$http.get("https://api.github.com/repos/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/issues?state=all&per_page=1000").success(function (data) {//Getting issues for org and repo
 			
@@ -165,7 +170,7 @@ angular.module('GitAPI', [])
 							}else{
 								//$scope.labels = [];
 								$scope.labelsLoaded = false;
-
+								$scope.labelsNotFound = true;	
 							}
 							
 						
@@ -178,7 +183,7 @@ angular.module('GitAPI', [])
 							}else{
 								//$scope.milestones = [];
 								$scope.milestonesLoaded = false;
-
+								$scope.milestonesNotFound = true;	
 							}
 						
 						
@@ -190,7 +195,7 @@ angular.module('GitAPI', [])
 							}else{
 								//$scope.users = [];
 								$scope.usersLoaded = false;
-
+								$scope.usersNotFound = true;	
 							}
 							
 							
@@ -204,6 +209,8 @@ angular.module('GitAPI', [])
 								$scope.buttonLoaded = true;
 							}else{
 								$scope.statesLoaded = false;
+								$scope.statesNotFound = true;
+								$scope.buttonLoaded = false;
 							}
 							
 						
