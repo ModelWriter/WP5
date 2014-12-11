@@ -31,8 +31,9 @@
 				
 			
    			<div style="clear:both;"></div>
-   				
-		    <select ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" ng-options="repository.name for repository in repos">
+   			
+   			<b><p style="float:left; width:100px;" ng-show="reposLoaded">Repository:</p>  </b>	
+		    <select style="float:left;" ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" ng-options="repository.name for repository in repos">
 				<!--option disabled selected>Select repository</option-->
 				<option value="">{{selectedRepo}}</option>
 			</select> 
@@ -40,44 +41,58 @@
       		<h2>No Repo Info Found</h2>
    			</div> 
 			
-			<br><br>
+			<div style="clear:both;"></div><br><br>
 			
-			<div id="selection" style="clear:both;">
-
-				<select ng-show="milestonesLoaded"  ng-model="selectedMilestone" ng-options="milestone.title for milestone in milestones">
-      				<!--option disabled selected>Select milestone</option-->
+			<div id="selection">
+				
+				<b><p style="float:left; width:100px;" ng-show="statesLoaded">State:</p>  </b>
+				<select style="float:left; " ng-show="statesLoaded"  ng-model="selectedState" ng-options="state.name for state in states">
+      				<option value="">All</option>
+      				<option value="">{{selectedState}}</option>
+    			</select>
+    			
+				<div style="clear:both;"></div><br><br>
+				
+				
+				<b><p style="float:left; width:100px;" ng-show="milestonesLoaded">Milestone:</p></b>
+				<select style="float:left;" ng-show="milestonesLoaded"  ng-model="selectedMilestone" ng-options="milestone.title for milestone in milestones">
+      				<option value="">All</option>
       				<option value="">{{selectedMilestone}}</option>
     			</select>
     			<div ng-show="milestonesNotFound">
       				<h2>No Milestone info found</h2>
    				</div>
     			
-				<br><br> 
+				<div style="clear:both;"></div> <br><br> 
 				
-				<select ng-show="usersLoaded" ng-model="selectedUser" ng-options="user.login for user in users">
-      				<!--option disabled selected>Select user</option-->
+				<b><p style="float:left; width:100px;" ng-show="usersLoaded">User:</p></b>
+				<select style="float:left;" ng-show="usersLoaded" ng-model="selectedUser" ng-options="user.login for user in users">
+      				<option value="">All</option>
       				<option value="">{{selectedUser}}</option>
     			</select>
     			<div ng-show="usersNotFound">
       				<h2>No User Info Found</h2>
    				</div>
     			
-				<br><br>
+				<div style="clear:both;"></div><br><br>
 				
-				<select ng-show="labelsLoaded" ng-model="selectedLabel" ng-options="label.name for label in labels">
-      				<!--option disabled selected>Select label</option-->
+				<b><p style="float:left; width:100px;" ng-show="labelsLoaded">Label:</p></b>
+				<select style="float:left;" ng-show="labelsLoaded" ng-model="selectedLabel" ng-options="label.name for label in labels">
+      				<option value="">All</option>
       				<option value="">{{selectedLabel}}</option>
     			</select>
     			<div ng-show="labelsNotFound">
 	      			<h2>No Label Info Found</h2>
 				</div>
 				
-				<br><br>
+				<div style="clear:both;"><br><br>
 				
 			</div>
 			
-			<button ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="drawChart()">Summary</button> 
-					
+			<button style="margin-left:100px;" ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="drawChart()">Summary</button> 
+			
+			<br><br>
+			
 			<div id="table_div"></div>
 
 
