@@ -6,7 +6,7 @@ var userList = [];
 var issueTable = [];
 
 
-google.load("visualization", "1", {packages:["table"]});
+google.load("visualization", "1", {packages:["table","corechart"]});
 
 angular.module('GitAPI', [])
 .controller('GitHubCtrl', function($scope, $http) {
@@ -18,150 +18,146 @@ angular.module('GitAPI', [])
 	  var table = new google.visualization.Table(document.getElementById('table_div'));
 	  
 	  $scope.drawChart = function() {
-		   
+
+
 		  totalHoursToDo = 0;
 		  totalHoursDone = 0;
 		  totalHoursInProgress = 0;
-	      table.clearChart();
-	   	  var selectedUser = "all";
+		  table.clearChart();
+		  var selectedUser = "all";
 		  var selectedMilestone = "all";
 		  var selectedLabel = "all";
 		  var selectedState = "all";
-		  
-	   var data = new google.visualization.DataTable();
-		//data.addColumn('number', 'Nr.');
-		data.addColumn('string', "State");
-	    data.addColumn('string', 'Issue');
-		data.addColumn('string', 'Progress');
-		data.addColumn('string', 'Task');
-		data.addColumn('string', 'Assignee');
-		data.addColumn('string', 'Milestone');
-		data.addColumn('string', 'Effort Required');
-		//data.addColumn('number', 'Total Hours');
 
-		if($scope.selectedState != null)
-			selectedState = $scope.selectedState.name;
-		
-		if($scope.selectedMilestone != null)
-			selectedMilestone = $scope.selectedMilestone.title; 
+		  var data = new google.visualization.DataTable();
+		  //data.addColumn('number', 'Nr.');
+		  data.addColumn('string', "State");
+		  data.addColumn('string', 'Issue');
+		  data.addColumn('string', 'Progress');
+		  data.addColumn('string', 'Task');
+		  data.addColumn('string', 'Assignee');
+		  data.addColumn('string', 'Milestone');
+		  data.addColumn('string', 'Effort Required');
+		  //data.addColumn('number', 'Total Hours');
 
-		if($scope.selectedLabel != null)
-			selectedLabel = $scope.selectedLabel.name; 
-		
-		if($scope.selectedUser != null)
-			selectedUser = $scope.selectedUser.login; 
+		  if($scope.selectedState != null)
+			  selectedState = $scope.selectedState.name;
 
+		  if($scope.selectedMilestone != null)
+			  selectedMilestone = $scope.selectedMilestone.title; 
 
-		//var conditionCount = 0;
+		  if($scope.selectedLabel != null)
+			  selectedLabel = $scope.selectedLabel.name; 
 
-		var conditionString = "if(";
-
-		if(selectedState == "all"){
-			
-			conditionString += '("open" == issueTable[i][0] || '
-							 	+ '"closed" == issueTable[i][0]) ' ;
-			
-		}else if(selectedState == "open"){
-			
-			conditionString += '"open" == issueTable[i][0] ';
-			
-		}else if(selectedState == "closed"){
-			
-			conditionString += '"closed" == issueTable[i][0] ';
-		}
-		
-		if(selectedMilestone != "all"){
-			conditionString += ' && ';
-			conditionString += '"' + selectedMilestone + '" == issueTable[i][5] ';
-			//conditionCount++;
-		}
-
-		if(selectedUser != "all"){
-			//if(conditionCount > 0){
-				conditionString += ' && ';
-			//}
-			conditionString += '"' + selectedUser + '" == issueTable[i][4] ';
-			//conditionCount++;
-		}
-
-		if(selectedLabel != "all"){
-			//if(conditionCount > 0){
-
-				conditionString += ' && (';
-				conditionString += '"' + selectedLabel + '" == issueTable[i][2] || "' 
-									   + selectedLabel + '" == issueTable[i][3] || "' 
-									   + selectedLabel + '" == issueTable[i][6] ';
-				conditionString += ')';
-
-			//}else{
-				//conditionString += '"' + selectedLabel + '" == issueTable[i][2] || "' 
-					//				   + selectedLabel + '" == issueTable[i][3] || "'
-						//			   + selectedLabel + '" == issueTable[i][6] ';
-			//}
-
-			//conditionCount++;
-		}
+		  if($scope.selectedUser != null)
+			  selectedUser = $scope.selectedUser.login; 
 
 
-		conditionString += ')';
+		  //var conditionCount = 0;
 
-		alert(conditionString);
-		
-		var totalHours = "";
-		
-		totalHours += 'if(issueTable[i][6].charAt(1) == "h"){';
-			
-		totalHours += '	var h = parseInt(issueTable[i][6].charAt(0));'
+		  var conditionString = "if(";
 
-		totalHours += '	if(issueTable[i][2] == "todo"){'
-		totalHours += '	totalHoursToDo = totalHoursToDo + h;}'
-		totalHours += 'if(issueTable[i][2] == "done"){'
-		totalHours += 'totalHoursDone = totalHoursDone + h;}'
+		  if(selectedState == "all"){
 
-		totalHours += 'if(issueTable[i][2] == "in progress"){'
-		totalHours += '	totalHoursInProgress = totalHoursInProgress + h;}'											
+			  conditionString += '("open" == issueTable[i][0] || '
+				  + '"closed" == issueTable[i][0]) ' ;
 
-		totalHours += '	}'
+		  }else if(selectedState == "open"){
 
+			  conditionString += '"open" == issueTable[i][0] ';
+
+		  }else if(selectedState == "closed"){
+
+			  conditionString += '"closed" == issueTable[i][0] ';
+		  }
+
+		  if(selectedMilestone != "all"){
+			  conditionString += ' && ';
+			  conditionString += '"' + selectedMilestone + '" == issueTable[i][5] ';
+			  //conditionCount++;
+		  }
+
+		  if(selectedUser != "all"){
+			  //if(conditionCount > 0){
+			  conditionString += ' && ';
+			  //}
+			  conditionString += '"' + selectedUser + '" == issueTable[i][4] ';
+			  //conditionCount++;
+		  }
+
+		  if(selectedLabel != "all"){
+			  //if(conditionCount > 0){
+
+			  conditionString += ' && (';
+			  conditionString += '"' + selectedLabel + '" == issueTable[i][2] || "' 
+			  + selectedLabel + '" == issueTable[i][3] || "' 
+			  + selectedLabel + '" == issueTable[i][6] ';
+			  conditionString += ')';
+
+			  //}else{
+			  //conditionString += '"' + selectedLabel + '" == issueTable[i][2] || "' 
+			  //				   + selectedLabel + '" == issueTable[i][3] || "'
+			  //			   + selectedLabel + '" == issueTable[i][6] ';
+			  //}
+
+			  //conditionCount++;
+		  }
+
+
+		  conditionString += ')';
+
+		  alert(conditionString);
+
+		  var totalHours = "";
+
+		  totalHours += 'if(issueTable[i][6].charAt(1) == "h"){';
+
+		  totalHours += '	var h = parseInt(issueTable[i][6].charAt(0));'
+
+			  totalHours += '	if(issueTable[i][2] == "todo"){'
+				  totalHours += '	totalHoursToDo = totalHoursToDo + h;}'
+			  
+				  totalHours += 'if(issueTable[i][2] == "done"){'
+					  totalHours += 'totalHoursDone = totalHoursDone + h;}'
+
+				  totalHours += 'if(issueTable[i][2] == "in progress"){'
+			     		totalHours += '	totalHoursInProgress = totalHoursInProgress + h;}'											
+
+		  totalHours += '	}'
 
 		totalHours += 'if(issueTable[i][6].charAt(1) == "d"){'
 
-		totalHours += '	var d = parseInt(issueTable[i][6].charAt(0));'
+			totalHours += '	var d = parseInt(issueTable[i][6].charAt(0));'
 
-		totalHours += '	if(issueTable[i][2] == "todo"){'
-		totalHours += 'totalHoursToDo = totalHoursToDo + d*8;}'
-			
-		totalHours += '	if(issueTable[i][2] == "done"){'
-		totalHours += '		totalHoursDone = totalHoursDone + d*8;}'
+		  totalHours += '	if(issueTable[i][2] == "todo"){'
+				totalHours += 'totalHoursToDo = totalHoursToDo + d*8;}'
 
-		totalHours += '	if(issueTable[i][2] == "in progress"){'
-		totalHours += '		totalHoursInProgress = totalHoursInProgress + d*8;}'
-			
-	    totalHours += '	}';
-	
-		
-		if(issueTable.length > 0){
-			
-			for(i = 0; i < issueTable.length; i++) {
+			totalHours += '	if(issueTable[i][2] == "done"){'
+			totalHours += '		totalHoursDone = totalHoursDone + d*8;}'
 
-				//eval("alert(issueTable[i]);");
-					eval(conditionString + "{ " + 
-							"data.addRow(issueTable[i]);"+ totalHours +"}");
-					
-					
-				
-				
-					
-					
-				
-			}
-			
-			table.draw(data, {showRowNumber: true});
-			alert("Done:"+totalHoursDone+", \n in progress:"+totalHoursInProgress+"\n todo:"+totalHoursToDo);
-			
-			
-		}
-	   }
+			totalHours += '	if(issueTable[i][2] == "in progress"){'
+			totalHours += '		totalHoursInProgress = totalHoursInProgress + d*8;}'
+
+		totalHours += '	}';
+
+
+		  if(issueTable.length > 0){
+
+			  for(i = 0; i < issueTable.length; i++) {
+
+				  //eval("alert(issueTable[i]);");
+				  eval(conditionString + "{ " + 
+						  "data.addRow(issueTable[i]);"+ totalHours +"}");
+
+
+			  }
+
+			  table.draw(data, {showRowNumber: true});
+			  alert("Done:"+totalHoursDone+", \n in progress:"+totalHoursInProgress+"\n todo:"+totalHoursToDo);
+
+
+		  }
+	  }
 	   
 	   // Get Repositories
 	   $scope.getRepos = function() {
@@ -203,6 +199,7 @@ angular.module('GitAPI', [])
 						}	
 						//$scope.issueFound = data.length > 0;
 						issueParse();
+						drawUserProgressCharts();
 						
 						
 							//$scope.labels = labelList;
@@ -262,6 +259,100 @@ angular.module('GitAPI', [])
 					alert(data+status+config);
         	 
 				});
+		
+		function drawUserProgressCharts() {	 
+			 
+			 var completedHours;
+			 var toDoHours;
+			 var row = [];
+			 var container = [];
+			 
+		
+			 container.push(['User','To Do','Done']);
+			 
+			 for(i = 0; i < userList.length; i++){
+				  	
+				 row = [];
+				 
+				 completedHours = 0;
+				 toDoHours = 0;
+				  for(j = 0; j <issueTable.length; j++){
+					  
+					  if(issueTable[j][4] == userList[i].login){
+
+						  if(issueTable[j][6].charAt(1) == "h"){ ;
+
+						  var h = parseInt(issueTable[j][6].charAt(0)); 
+
+						  if(issueTable[j][2] == "todo"){ 
+							  toDoHours = toDoHours + h;} 
+
+						  if(issueTable[j][2] == "done"){ 
+							  completedHours = completedHours + h;} 
+
+						  if(issueTable[j][2] == "in progress"){ 
+							  toDoHours = toDoHours + h;} 											
+
+						  } 
+
+						  if(issueTable[j][6].charAt(1) == "d"){ 
+
+							  var d = parseInt(issueTable[j][6].charAt(0)); 
+
+							  if(issueTable[j][2] == "todo"){ 
+								  toDoHours = toDoHours + d*8;} 
+
+							  if(issueTable[j][2] == "done"){ 
+								  completedHours = completedHours + d*8;} 
+
+							  if(issueTable[j][2] == "in progress"){ 
+								  toDoHours = toDoHours + d*8;} 
+
+						  }
+					  }
+				  } // end for
+				  
+				  row.push(userList[i].login);
+				  row.push(toDoHours);
+				  row.push(completedHours);
+				  
+				  container.push(row);
+			  } // end for
+			 
+			 var data = new google.visualization.arrayToDataTable(container);
+			  
+
+			  
+			  var options = {
+					  title: 'User Performance',
+					  hAxis: {title: 'Users', titleTextStyle: {color: 'black'}}
+			  };
+			  
+			  var newDiv = document.createElement('div');
+			  newDiv.id = 'chart_div';
+			  document.getElementById('chart_divs').appendChild(newDiv);
+			  
+			  var chart = new google.visualization.ColumnChart('chart_div');
+			  
+			  
+			  chart.draw(data, options);
+			  
+			  /*
+			  var data = google.visualization.arrayToDataTable([
+			                                                    ['Year', 'Sales', 'Expenses'],
+			                                                    ['2004',  1000,      400],
+			                                                    ['2005',  1170,      460],
+			                                                    ['2006',  660,       1120],
+			                                                    ['2007',  1030,      540]
+			                                                  ]);
+
+			                                                  var options = {
+			                                                    title: 'Company Performance',
+			                                                    hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
+			                                                  };*/
+			  
+
+		}
 		
 		
 		function issueParse (){		
