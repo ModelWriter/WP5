@@ -262,96 +262,118 @@ angular.module('GitAPI', [])
 		
 		function drawUserProgressCharts() {	 
 			 
-			 var completedHours;
-			 var toDoHours;
-			 var row = [];
-			 var container = [];
-			 
-		
-			 container.push(['User','To Do','Done']);
-			 
-			 for(i = 0; i < userList.length; i++){
-				  	
-				 row = [];
+			 var numberOfMilestones = milestoneList.length;
+			 if(numberOfMilestones > 0){
 				 
-				 completedHours = 0;
-				 toDoHours = 0;
-				  for(j = 0; j <issueTable.length; j++){
+				 for(x = 0; x < numberOfMilestones; x++){
+					 
+					 var completedHours;
+					 var toDoHours;
+					 var row = [];
+					 var container = [];
+					 
+				
+					 container.push(["User","To Do","Done"]);
+					 
+					 for(i = 0; i < userList.length; i++){
+						  	
+						 row = [];
+						 
+						 completedHours = 0;
+						 toDoHours = 0;
+						  for(j = 0; j <issueTable.length; j++){
+							  
+							  if(issueTable[j][4] == userList[i].login && issueTable[j][5] == milestoneList[x].title){
+
+								  if(issueTable[j][6].charAt(1) == "h"){ ;
+
+								  var h = parseInt(issueTable[j][6].charAt(0)); 
+
+								  if(issueTable[j][2] == "todo"){ 
+									  toDoHours = toDoHours + h;} 
+
+								  if(issueTable[j][2] == "done"){ 
+									  completedHours = completedHours + h;} 
+
+								  if(issueTable[j][2] == "in progress"){ 
+									  toDoHours = toDoHours + h;} 											
+
+								  } 
+
+								  if(issueTable[j][6].charAt(1) == "d"){ 
+
+									  var d = parseInt(issueTable[j][6].charAt(0)); 
+
+									  if(issueTable[j][2] == "todo"){ 
+										  toDoHours = toDoHours + d*8;} 
+
+									  if(issueTable[j][2] == "done"){ 
+										  completedHours = completedHours + d*8;} 
+
+									  if(issueTable[j][2] == "in progress"){ 
+										  toDoHours = toDoHours + d*8;} 
+
+								  }
+							  }
+						  } // end for issueTable
+						  
+						  row.push(userList[i].login);
+						  row.push(toDoHours);
+						  row.push(completedHours);
+						  
+						  container.push(row);
+					  } // end for users
+					 
+					 
+					 var data = new google.visualization.arrayToDataTable(container);
 					  
-					  if(issueTable[j][4] == userList[i].login){
+					 
+					  var title = "User Performance for " + milestoneList[x].title; 
+					  var options = {
+							  title: title,
+							  hAxis: {title: 'Users', titleTextStyle: {color: 'black'}}
+					  };
+					  
+					  var newDiv = document.createElement('div');
+					  newDiv.id = 'chart_div'+(x+1);
+					  document.getElementById('chart_div'+x).appendChild(newDiv);
+					  
+					  var chart = new google.visualization.ColumnChart(document.getElementById(newDiv.id));
+					  
+					  
+					  chart.draw(data, options);
+					  
+					  /*
+					  var data = google.visualization.arrayToDataTable([
+					                                                    ['Year', 'Sales', 'Expenses'],
+					                                                    ['2004',  1000,      400],
+					                                                    ['2005',  1170,      460],
+					                                                    ['2006',  660,       1120],
+					                                                    ['2007',  1030,      540]
+					                                                  ]);
 
-						  if(issueTable[j][6].charAt(1) == "h"){ ;
-
-						  var h = parseInt(issueTable[j][6].charAt(0)); 
-
-						  if(issueTable[j][2] == "todo"){ 
-							  toDoHours = toDoHours + h;} 
-
-						  if(issueTable[j][2] == "done"){ 
-							  completedHours = completedHours + h;} 
-
-						  if(issueTable[j][2] == "in progress"){ 
-							  toDoHours = toDoHours + h;} 											
-
-						  } 
-
-						  if(issueTable[j][6].charAt(1) == "d"){ 
-
-							  var d = parseInt(issueTable[j][6].charAt(0)); 
-
-							  if(issueTable[j][2] == "todo"){ 
-								  toDoHours = toDoHours + d*8;} 
-
-							  if(issueTable[j][2] == "done"){ 
-								  completedHours = completedHours + d*8;} 
-
-							  if(issueTable[j][2] == "in progress"){ 
-								  toDoHours = toDoHours + d*8;} 
-
-						  }
-					  }
-				  } // end for
-				  
-				  row.push(userList[i].login);
-				  row.push(toDoHours);
-				  row.push(completedHours);
-				  
-				  container.push(row);
-			  } // end for
+					                                                  var options = {
+					                                                    title: 'Company Performance',
+					                                                    hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
+					                                                  };
+					  
+					  var newDiv = document.createElement('div');
+					  newDiv.id = 'chart_div';
+					  document.getElementById('chart_divs').appendChild(newDiv);
+					  
+					                                                  
+					  var chart = new google.visualization.ColumnChart(document.getElementById(newDiv));
+					  
+					  
+					  chart.draw(data, options);	
+					  
+					  */
+				 } // end for milestones
+			 }// end if 
+			 else {
+				 alert("NO MILESTONES!");
+			 }
 			 
-			 var data = new google.visualization.arrayToDataTable(container);
-			  
-
-			  
-			  var options = {
-					  title: 'User Performance',
-					  hAxis: {title: 'Users', titleTextStyle: {color: 'black'}}
-			  };
-			  
-			  var newDiv = document.createElement('div');
-			  newDiv.id = 'chart_div';
-			  document.getElementById('chart_divs').appendChild(newDiv);
-			  
-			  var chart = new google.visualization.ColumnChart('chart_div');
-			  
-			  
-			  chart.draw(data, options);
-			  
-			  /*
-			  var data = google.visualization.arrayToDataTable([
-			                                                    ['Year', 'Sales', 'Expenses'],
-			                                                    ['2004',  1000,      400],
-			                                                    ['2005',  1170,      460],
-			                                                    ['2006',  660,       1120],
-			                                                    ['2007',  1030,      540]
-			                                                  ]);
-
-			                                                  var options = {
-			                                                    title: 'Company Performance',
-			                                                    hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
-			                                                  };*/
-			  
-
 		}
 		
 		
