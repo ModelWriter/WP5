@@ -152,7 +152,9 @@ angular.module('GitAPI', [])
 
 			  }
 			  
-			  document.getElementById('w').setAttribute("style","width:1000px");
+			  
+			  document.getElementById('table_div').setAttribute("style","display:block");
+			  
 			  
 			  table.draw(data, {showRowNumber: true});
 			  //alert("Done:"+totalHoursDone+", \n in progress:"+totalHoursInProgress+"\n todo:"+totalHoursToDo);
