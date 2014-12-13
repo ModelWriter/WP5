@@ -56,7 +56,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.0em;
+  font-size: 1.3em;
   line-height: 1.55em;
   margin-bottom: 4px;
   color: #888;
@@ -90,6 +90,27 @@ a:hover {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
+
+.clear {
+	
+	clear:both;
+}
+
+#table_div {
+  display: none;
+  width: 1000px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 15px 25px;
+  -webkit-box-shadow: 1px 2px 3px -1px rgba(0,0,0,0.4);
+  -moz-box-shadow: 1px 2px 3px -1px rgba(0,0,0,0.4);
+  box-shadow: 1px 2px 3px -1px rgba(0,0,0,0.4);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+
+}
+
 
 #ghapidata {
   display: block;
