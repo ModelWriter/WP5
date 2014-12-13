@@ -4,7 +4,7 @@ var milestoneList = [];
 var labelList = [];
 var userList = [];
 var issueTable = [];
-
+var table = null;
 
 google.load("visualization", "1", {packages:["table","corechart"]});
 
@@ -15,7 +15,7 @@ angular.module('GitAPI', [])
 	
 	  var reposNotFound = false;
 	  
-	  var table = new google.visualization.Table(document.getElementById('table_div'));
+	  table = new google.visualization.Table(document.getElementById('table_div'));
 	  
 	  $scope.drawChart = function() {
 
@@ -171,6 +171,7 @@ angular.module('GitAPI', [])
 						$scope.repos = data;				
 						$scope.selectedRepo = null;									
 						$scope.reposLoaded = true;
+						//table.clearChart();
 						
 						
 						issueTable = [];
@@ -194,6 +195,9 @@ angular.module('GitAPI', [])
 		$scope.milestonesNotFound = false;
 		$scope.statesNotFound = false;
 		
+		//$scope.drawChart();
+		document.getElementById('table_div').setAttribute("style","display:none");
+		
 				$http.get("https://api.github.com/repos/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/issues?state=all&per_page=1000").success(function (data) {//Getting issues for org and repo
 			
 						//alert("issue get");
@@ -214,7 +218,8 @@ angular.module('GitAPI', [])
 							}else{
 								//$scope.labels = [];
 								$scope.labelsLoaded = false;
-								$scope.labelsNotFound = true;	
+								$scope.labelsNotFound = true;
+								$scope.selectedLabel = null;
 							}
 							
 						
@@ -228,6 +233,7 @@ angular.module('GitAPI', [])
 								//$scope.milestones = [];
 								$scope.milestonesLoaded = false;
 								$scope.milestonesNotFound = true;	
+								$scope.selectedMilestone = null;
 							}
 						
 						
@@ -239,7 +245,8 @@ angular.module('GitAPI', [])
 							}else{
 								//$scope.users = [];
 								$scope.usersLoaded = false;
-								$scope.usersNotFound = true;	
+								$scope.usersNotFound = true;
+								$scope.selectedUser = null;
 							}
 							
 							
@@ -255,6 +262,7 @@ angular.module('GitAPI', [])
 								$scope.statesLoaded = false;
 								$scope.statesNotFound = true;
 								$scope.buttonLoaded = false;
+								$scope.selectedState = null;
 							}
 							
 						
@@ -267,8 +275,13 @@ angular.module('GitAPI', [])
 		function drawUserProgressCharts() {	 
 			 
 			 var numberOfMilestones = milestoneList.length;
+			 var numberOfUsers = userList.length;
+			 var sprintCharts = document.getElementById('sprintCharts');
+			 while (sprintCharts.firstChild) {
+				 sprintCharts.removeChild(sprintCharts.firstChild);
+			 }
 			 
-			 if(numberOfMilestones > 0){
+			 if(numberOfMilestones > 0  && numberOfUsers > 0){
 				 
 				 for(x = 0; x < numberOfMilestones; x++){
 					 
@@ -340,8 +353,8 @@ angular.module('GitAPI', [])
 					  };
 					  
 					  var newDiv = document.createElement('div');
-					  newDiv.id = 'chart_div'+(x+1);
-					  document.getElementById('chart_div'+x).appendChild(newDiv);
+					  newDiv.id = 'chart_div'+x;
+					  document.getElementById('sprintCharts').appendChild(newDiv);
 					  
 					  var chart = new google.visualization.ColumnChart(document.getElementById(newDiv.id));
 					  
