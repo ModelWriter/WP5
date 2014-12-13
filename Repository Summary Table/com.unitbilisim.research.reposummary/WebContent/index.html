@@ -12,15 +12,13 @@
 
  
  <script type="text/javascript">
-
-
  </script>
 </head>
 
 <body>
 	
-	<div id="w"  >
-		<div ng-controller="GitHubCtrl">
+	<div ng-controller="GitHubCtrl"  >
+		<div id="w" >
 			<h1>Repository Summary Table</h1>
 
 			<p>Enter a single Github organization name below and click the button to
@@ -43,7 +41,7 @@
 			
 			<div style="clear:both;"></div><br><br>
 			
-			<div id="selection">
+			<div id="selection" style="float:left;">
 				
 				<b><p style="float:left; width:100px;" ng-show="statesLoaded">State:</p>  </b>
 				<select style="float:left; " ng-show="statesLoaded"  ng-model="selectedState" ng-options="state.name for state in states">
@@ -95,17 +93,20 @@
 			<button style="margin-left:100px;" ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="drawChart()">Summary</button> 
 			
 			<br><br>
-			
-			<div id="chart_div0"></div><br>
-			
-			<div id="table_div"></div>
-
 
 			<div id="ghapidata" class="clearfix"></div>
 		</div>
+		<div style="float:left;">
+			<div id="chart_div0"></div><br>
+		</div>
+		
+		<div style="width:1000px; margin: 0 auto;" id="table_div"></div>
 		
 		<p> UNIT Technologies and Information R&D Ltd.</p>
 	</div>
+	
+	
+</div>
 </body>
 
 </html>
