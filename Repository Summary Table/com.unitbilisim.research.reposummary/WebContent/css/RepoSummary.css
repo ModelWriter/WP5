@@ -91,6 +91,11 @@ a:hover {
   border-radius: 4px;
 }
 
+.clear {
+	
+	clear:both;
+}
+
 #table_div {
   display: none;
   width: 1000px;

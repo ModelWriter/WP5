@@ -106,7 +106,7 @@ angular.module('GitAPI', [])
 
 		  conditionString += ')';
 
-		  alert(conditionString);
+		  //alert(conditionString);
 
 		  var totalHours = "";
 

@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html">
 <title>Demo</title>
-<link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+<link rel="stylesheet" type="text/css" media="all" href="css/RepoSummary.css">
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="js/RepoSummary.js"></script>
 
@@ -28,7 +28,7 @@
 			<a href="#" id="ghsubmitbtn" style="float:left; margin-left:10px;" ng-click="getRepos()">Get Repos</a> 
 				
 			
-   			<div style="clear:both;"></div>
+   			<div class="clear"></div>
    			
    			<div id="selection" style="float:left;">
    			
@@ -41,7 +41,7 @@
       		<h2>No Repo Info Found</h2>
    			</div> 
 			
-			<div style="clear:both;"></div><br><br>
+			<div class="clear"></div><br><br>
 			
 			
 				
@@ -54,7 +54,7 @@
 	      			<h2>No State Info Found</h2>
 	   			</div> 
     			
-				<div style="clear:both;"></div><br><br>
+				<div class="clear"></div><br><br>
 				
 				
 				<b><p style="float:left; width:100px;" ng-show="milestonesLoaded">Milestone:</p></b>
@@ -66,7 +66,7 @@
       				<h2>No Milestone info found</h2>
    				</div>
     			
-				<div style="clear:both;"></div> <br><br> 
+				<div class="clear"></div> <br><br> 
 				
 				<b><p style="float:left; width:100px;" ng-show="usersLoaded">User:</p></b>
 				<select style="float:left;" ng-show="usersLoaded" ng-model="selectedUser" ng-options="user.login for user in users">
@@ -77,7 +77,7 @@
       				<h2>No User Info Found</h2>
    				</div>
     			
-				<div style="clear:both;"></div><br><br>
+				<div class="clear"></div><br><br>
 				
 				<b><p style="float:left; width:100px;" ng-show="labelsLoaded">Label:</p></b>
 				<select style="float:left;" ng-show="labelsLoaded" ng-model="selectedLabel" ng-options="label.name for label in labels">
@@ -88,9 +88,7 @@
 	      			<h2>No Label Info Found</h2>
 				</div>
 				
-				<div style="clear:both;"><br><br>
-				
-			</div>
+				<div class="clear"></div><br><br>
 			
 			<button style="margin-left:100px;" ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="drawChart()">Summary</button> 
 			
