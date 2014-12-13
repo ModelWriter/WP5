@@ -9,7 +9,7 @@ var table = null;
 google.load("visualization", "1", {packages:["table","corechart"]});
 
 angular.module('GitAPI', [])
-.controller('GitHubCtrl', function($scope, $http) {
+.controller('GitHubCtrl', function($scope, $http, $parse) {
       	  		
 	  
 	
@@ -165,6 +165,39 @@ angular.module('GitAPI', [])
 	   
 	   // Get Repositories
 	   $scope.getRepos = function() {
+		   /* 
+		   if($scope.orgname == null){
+		    	//$scope.orgname = "modelwriter";
+		    	
+		    	var the_string = 'orgname';
+
+		    	// Get the model
+		    	var model = $parse(the_string);
+
+		    	// Assigns a value to it
+		    	model.assign($scope, "modelwriter");
+
+		    	// Apply it to the scope
+		    	$scope.$apply();
+		    	//console.log($scope.life.meaning);
+		    }
+		  */
+		    var sprintCharts = document.getElementById('sprintCharts');
+			 while (sprintCharts.firstChild) {
+				 sprintCharts.removeChild(sprintCharts.firstChild);
+			}
+			document.getElementById('table_div').setAttribute("style","display:none"); 
+			$scope.labelsNotFound = false;
+			$scope.labelsLoaded = false;
+			$scope.usersNotFound = false;
+			$scope.usersLoaded = false;
+			$scope.milestonesNotFound = false;
+			$scope.milestonesLoaded = false;
+			$scope.statesNotFound = false;
+			$scope.statesLoaded = false;
+			$scope.progressChartNotFound = false;
+			$scope.buttonLoaded = false;
+		    
 			$http.get("https://api.github.com/orgs/"+$scope.orgname+"/repos").success(function(data) {
 						
 						$scope.reposNotFound = false;
@@ -190,11 +223,13 @@ angular.module('GitAPI', [])
 		labelList = [];
 		userList = [];
 		issueTable = [];
-		$scope.labelsNotFound = false;
-		$scope.usersNotFound = false;
+	    $scope.labelsNotFound = false;
+	    $scope.usersNotFound = false;
 		$scope.milestonesNotFound = false;
 		$scope.statesNotFound = false;
 		$scope.progressChartNotFound = false;
+		
+		
 		
 		//$scope.drawChart();
 		document.getElementById('table_div').setAttribute("style","display:none");
