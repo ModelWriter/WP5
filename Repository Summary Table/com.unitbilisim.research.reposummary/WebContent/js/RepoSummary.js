@@ -151,11 +151,13 @@ angular.module('GitAPI', [])
 
 
 			  }
-
+			  
+			  document.getElementById('w').setAttribute("style","width:1000px");
+			  
 			  table.draw(data, {showRowNumber: true});
-			  alert("Done:"+totalHoursDone+", \n in progress:"+totalHoursInProgress+"\n todo:"+totalHoursToDo);
-
-
+			  //alert("Done:"+totalHoursDone+", \n in progress:"+totalHoursInProgress+"\n todo:"+totalHoursToDo);
+			  
+			  
 		  }
 	  }
 	   
