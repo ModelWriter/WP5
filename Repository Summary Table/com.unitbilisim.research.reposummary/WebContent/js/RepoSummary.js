@@ -194,6 +194,7 @@ angular.module('GitAPI', [])
 		$scope.usersNotFound = false;
 		$scope.milestonesNotFound = false;
 		$scope.statesNotFound = false;
+		$scope.progressChartNotFound = false;
 		
 		//$scope.drawChart();
 		document.getElementById('table_div').setAttribute("style","display:none");
@@ -389,7 +390,7 @@ angular.module('GitAPI', [])
 				 } // end for milestones
 			 }// end if 
 			 else {
-				 alert("NO MILESTONES!");
+				 $scope.progressChartNotFound = true;
 				 
 			 }
 			 

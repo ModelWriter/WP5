@@ -30,6 +30,8 @@
 			
    			<div style="clear:both;"></div>
    			
+   			<div id="selection" style="float:left;">
+   			
    			<b><p style="float:left; width:100px;" ng-show="reposLoaded">Repository:</p>  </b>	
 		    <select style="float:left;" ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" ng-options="repository.name for repository in repos">
 				<!--option disabled selected>Select repository</option-->
@@ -41,7 +43,7 @@
 			
 			<div style="clear:both;"></div><br><br>
 			
-			<div id="selection" style="float:left;">
+			
 				
 				<b><p style="float:left; width:100px;" ng-show="statesLoaded">State:</p>  </b>
 				<select style="float:left; " ng-show="statesLoaded"  ng-model="selectedState" ng-options="state.name for state in states">
@@ -98,6 +100,14 @@
 		</div>
 		<div style="float:left;" id="sprintCharts">
 			<!--div id="chart_div0"></div--><br>
+		</div>
+		<div style="text-align: center;" ng-show="progressChartNotFound">
+	      	<h2>Progress chart inaccessible due to following possible reasons:
+	      	<ul>
+	      		<li><b><i>No milestone</i></b></li>
+	      		<li><b><i>No User</i></b></li>
+	      	</ul>
+	      	</h2>
 		</div>
 		
 		
