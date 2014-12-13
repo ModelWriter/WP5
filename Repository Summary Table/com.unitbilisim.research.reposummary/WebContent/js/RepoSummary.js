@@ -263,6 +263,7 @@ angular.module('GitAPI', [])
 		function drawUserProgressCharts() {	 
 			 
 			 var numberOfMilestones = milestoneList.length;
+			 
 			 if(numberOfMilestones > 0){
 				 
 				 for(x = 0; x < numberOfMilestones; x++){
@@ -372,6 +373,7 @@ angular.module('GitAPI', [])
 			 }// end if 
 			 else {
 				 alert("NO MILESTONES!");
+				 
 			 }
 			 
 		}
