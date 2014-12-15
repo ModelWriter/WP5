@@ -165,8 +165,8 @@ angular.module('GitAPI', [])
 	   
 	   // Get Repositories
 	   $scope.getRepos = function() {
-		   /* 
-		   if($scope.orgname == null){
+		    
+		   if($scope.orgname == null || $scope.orgname == ""){
 		    	//$scope.orgname = "modelwriter";
 		    	
 		    	var the_string = 'orgname';
@@ -178,16 +178,17 @@ angular.module('GitAPI', [])
 		    	model.assign($scope, "modelwriter");
 
 		    	// Apply it to the scope
-		    	$scope.$apply();
+		    	//$scope.$apply();
 		    	//console.log($scope.life.meaning);
 		    }
-		  */
+		  
 		    var sprintCharts = document.getElementById('sprintCharts');
 			 while (sprintCharts.firstChild) {
 				 sprintCharts.removeChild(sprintCharts.firstChild);
 			}
 			document.getElementById('table_div').setAttribute("style","display:none"); 
 			
+			$scope.reposLoaded = false;
 			$scope.labelsNotFound = false;
 			$scope.labelsLoaded = false;
 			$scope.usersNotFound = false;

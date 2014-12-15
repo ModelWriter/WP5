@@ -98,7 +98,8 @@ a:hover {
 
 #table_div {
   display: none;
-  width: 1000px;
+  width: 100%;
+  padding:20px 10px 10px 10px;
   margin: 0 auto;
   background: #fff;
   padding: 15px 25px;

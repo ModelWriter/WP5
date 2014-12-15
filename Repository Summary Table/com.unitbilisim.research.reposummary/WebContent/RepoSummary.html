@@ -23,11 +23,11 @@
 		<div id="w" >
 			<h1>Repository Summary Table</h1>
 
-			<p>Enter a single Github organization name below and click the button to
-				repositories and issues.</p>
+			<p>Select a repository for ModelWriter Organization or enter another GitHub organization name below
+			to see issues and users progress.</p>
 
-			<input type="text" id="ghorganizationname" style="float:left;" ng-model="orgname" placeholder="Get Repos for organization: modelwriter"> 
-			<a href="#" id="ghsubmitbtn" style="float:left; margin-left:10px;" ng-click="getRepos()">Get Repos</a> 
+			<input type="text" id="ghorganizationname" style="float:left;" ng-model="orgname" placeholder="modelwriter"> 
+			<a href="#" id="ghsubmitbtn" style="float:left; margin-left:10px;" data-ng-init="getRepos()" ng-click="getRepos()">Get Repos</a> 
 				
 			
    			<div class="clear"></div>
@@ -115,8 +115,9 @@
 		
 		
 		<div id="ghapidata" class="clearfix"></div>
-		<p>Provided by UNIT Technologies and Information R&D Ltd.</p>
+		<p>Provided by UNIT Technologies and Information R&D Ltd. - (BETA)</p>
 	</div>
+	<br><br>
 	
 	
 	<div id="table_div">
