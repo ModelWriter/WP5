@@ -8,7 +8,7 @@ var table = null;
 
 google.load("visualization", "1", {packages:["table","corechart"]});
 
-angular.module('GitAPI', [])
+angular.module('GitAPI', ['multi-select'])
 .controller('GitHubCtrl', function($scope, $http, $parse) {
       	  		
 	  
@@ -24,11 +24,17 @@ angular.module('GitAPI', [])
 		  totalHoursDone = 0;
 		  totalHoursInProgress = 0;
 		  table.clearChart();
+		  
 		  var selectedUser = "all";
+		  /*
 		  var selectedMilestone = "all";
 		  var selectedLabel = "all";
 		  var selectedState = "all";
-
+		  */		  
+		  var milestoneSelected = false;
+		  var userSelected = false;
+		  var labelSelected = false;
+		  
 		  var data = new google.visualization.DataTable();
 		  //data.addColumn('number', 'Nr.');
 		  data.addColumn('string', "State");
@@ -40,6 +46,16 @@ angular.module('GitAPI', [])
 		  data.addColumn('string', 'Effort Required');
 		  //data.addColumn('number', 'Total Hours');
 
+
+		  //alert($scope.resultLabels.length);
+		  /*
+		  angular.forEach( $scope.resultLabels, function( value, key ) {
+			    if ( value.ticked === true ) {
+			        alert(value.name);
+			    }
+			});
+		  */
+		  
 		  if($scope.selectedState != null)
 			  selectedState = $scope.selectedState.name;
 
@@ -52,7 +68,10 @@ angular.module('GitAPI', [])
 		  if($scope.selectedUser != null)
 			  selectedUser = $scope.selectedUser.login; 
 
-
+		  // yukarıdakileri de dönüştür ve aşağıdaki hale sok
+		  if($scope.resultMilestones.length > 0)
+			  milestoneSelected = true;
+		  
 		  //var conditionCount = 0;
 
 		  var conditionString = "if(";
@@ -71,18 +90,30 @@ angular.module('GitAPI', [])
 			  conditionString += '"closed" == issueTable[i][0] ';
 		  }
 
-		  if(selectedMilestone != "all"){
+		  if(milestoneSelected == true){
+			  var counter = 0;
+			  conditionString += ' && (';
+			  angular.forEach( $scope.resultMilestones, function( value, key ) {
+				    if ( value.ticked === true ) {
+				    	if(counter > 0){
+				    		conditionString += ' || ';
+				    	}				    		
+						conditionString += '"' + value.title + '" == issueTable[i][5] ';
+						counter++;
+				    }
+				});
+			  conditionString += ')';
+			  /*
 			  conditionString += ' && ';
 			  conditionString += '"' + selectedMilestone + '" == issueTable[i][5] ';
-			  //conditionCount++;
+			  */
+
 		  }
 
 		  if(selectedUser != "all"){
-			  //if(conditionCount > 0){
-			  conditionString += ' && ';
-			  //}
-			  conditionString += '"' + selectedUser + '" == issueTable[i][4] ';
-			  //conditionCount++;
+
+			  conditionString += ' && ';			
+			  conditionString += '"' + selectedUser + '" == issueTable[i][4] ';		 
 		  }
 
 		  if(selectedLabel != "all"){
@@ -106,7 +137,7 @@ angular.module('GitAPI', [])
 
 		  conditionString += ')';
 
-		  //alert(conditionString);
+		  alert(conditionString);
 
 		  var totalHours = "";
 

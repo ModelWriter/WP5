@@ -1,8 +1,9 @@
 <!doctype html>
 <html ng-app="GitAPI">
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<script type="text/javascript" src="javascripts/angular-multi-select.js"></script> 
+<link rel="stylesheet" type="text/css" media="all" href="stylesheets/angular-multi-select.css">
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html">
 
@@ -35,24 +36,28 @@
    			<div id="selection" style="float:left;">
    			
    			<b><p style="float:left; width:100px;" ng-show="reposLoaded">Repository:</p>  </b>	
+		    
 		    <select style="float:left;" ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" ng-options="repository.name for repository in repos">
-				<!--option disabled selected>Select repository</option-->
 				<option value="">{{selectedRepo}}</option>
-			</select> 
+			</select>  
+   			
+
 			<div ng-show="reposNotFound">
       		<h2>No Repo Info Found</h2>
-   			</div> 
-			
+   			</div>
+   			
 			<div class="clear"></div><br><br>
 			
 			
 				
 				<b><p style="float:left; width:100px;" ng-show="statesLoaded">State:</p>  </b>
+				
+				
 				<select style="float:left; " ng-show="statesLoaded"  ng-model="selectedState" ng-options="state.name for state in states">
       				<option value="">All</option>
       				<option value="">{{selectedState}}</option>
-    			</select>
-    			<div ng-show="statesNotFound">
+    			</select>				
+				<div ng-show="statesNotFound">
 	      			<h2>No State Info Found</h2>
 	   			</div> 
     			
@@ -60,10 +65,22 @@
 				
 				
 				<b><p style="float:left; width:100px;" ng-show="milestonesLoaded">Milestone:</p></b>
+				
+				<!-- 
 				<select style="float:left;" ng-show="milestonesLoaded" ng-change="drawUserProgressChart()"  ng-model="selectedMilestone" ng-options="milestone.title for milestone in milestones">
       				<option value="">All</option>
       				<option value="">{{selectedMilestone}}</option>
     			</select>
+				 -->
+    			
+    			<div multi-select
+					ng-show="milestonesLoaded" 
+					input-model="milestones"
+					output-model="resultMilestones" 
+					button-label="title"
+					item-label="title" 
+					tick-property="ticked">
+				</div>
     			<div ng-show="milestonesNotFound">
       				<h2>No Milestone info found</h2>
    				</div>
@@ -71,10 +88,20 @@
 				<div class="clear"></div> <br><br> 
 				
 				<b><p style="float:left; width:100px;" ng-show="usersLoaded">User:</p></b>
+				<!-- 
 				<select style="float:left;" ng-show="usersLoaded" ng-model="selectedUser" ng-options="user.login for user in users">
       				<option value="">All</option>
       				<option value="">{{selectedUser}}</option>
     			</select>
+				 -->
+    			<div multi-select
+					ng-show="usersLoaded" 
+					input-model="users" 
+					output-model="resultUsers"
+					button-label="login"
+					item-label="login" 
+					tick-property="ticked">
+				</div>
     			<div ng-show="usersNotFound">
       				<h2>No User Info Found</h2>
    				</div>
@@ -82,10 +109,20 @@
 				<div class="clear"></div><br><br>
 				
 				<b><p style="float:left; width:100px;" ng-show="labelsLoaded">Label:</p></b>
+				<!-- 
 				<select style="float:left;" ng-show="labelsLoaded" ng-model="selectedLabel" ng-options="label.name for label in labels">
       				<option value="">All</option>
       				<option value="">{{selectedLabel}}</option>
     			</select>
+				 -->
+    			<div multi-select
+					ng-show="labelsLoaded" 
+					input-model="labels"
+					output-model="resultLabels" 
+					button-label="name"
+					item-label="name" 
+					tick-property="ticked">
+				</div>
     			<div ng-show="labelsNotFound">
 	      			<h2>No Label Info Found</h2>
 				</div>
