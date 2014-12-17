@@ -79,7 +79,7 @@ a:hover {
 /* page structure */
 #w {
   display: block;
-  width: 800px;
+  width: 850px;
   margin: 0 auto;
   background: #fff;
   padding: 15px 25px;
@@ -98,7 +98,8 @@ a:hover {
 
 #table_div {
   display: none;
-  width: 1000px;
+  width: 100%;
+  padding:20px 10px 10px 10px;
   margin: 0 auto;
   background: #fff;
   padding: 15px 25px;
@@ -200,7 +201,7 @@ a:hover {
   padding: 5px 8px;
   font-size: 1.4em;
   color: #666;
-  width: 300px;
+  width: 340px;
   margin-bottom: 15px;
 }
 

@@ -1,14 +1,17 @@
 <!doctype html>
 <html ng-app="GitAPI">
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<script type="text/javascript" src="javascripts/angular-multi-select.js"></script> 
+<link rel="stylesheet" type="text/css" media="all" href="stylesheets/angular-multi-select.css">
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html">
+
 <title>Repository Summary</title>
 <link rel="stylesheet" type="text/css" media="all" href="stylesheets/RepoSummary.css">
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="javascipts/RepoSummary.js"></script>
+<script type="text/javascript" src="javascripts/RepoSummary.js"></script>
+
 
  
  <script type="text/javascript">
@@ -21,76 +24,96 @@
 		<div id="w" >
 			<h1>Repository Summary Table</h1>
 
-			<p>Enter a single Github organization name below and click the button to
-				repositories and issues.</p>
+			<p>Select a repository for ModelWriter Organization or enter another GitHub organization name below
+			to see issues and users progress.</p>
 
-			<input type="text" id="ghorganizationname" style="float:left;" ng-model="orgname" placeholder="Get Repos for organization: modelwriter"> 
-			<a href="#" id="ghsubmitbtn" style="float:left; margin-left:10px;" ng-click="getRepos()">Get Repos</a> 
-				
-			
+			<input type="text" id="ghorganizationname" style="float:left;" ng-model="orgname" placeholder="modelwriter"> 
+			<a href="#" id="ghsubmitbtn" style="float:left; margin-left:10px;" data-ng-init="getRepos()" ng-click="getRepos()">Get Repos</a> 
+							
    			<div class="clear"></div>
    			
-   			<div id="selection" style="float:left;">
+   			<div id="selection" style="float:left; width:375px;">
    			
-   			<b><p style="float:left; width:100px;" ng-show="reposLoaded">Repository:</p>  </b>	
-		    <select style="float:left;" ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" ng-options="repository.name for repository in repos">
-				<!--option disabled selected>Select repository</option-->
-				<option value="">{{selectedRepo}}</option>
-			</select> 
-			<div ng-show="reposNotFound">
-      		<h2>No Repo Info Found</h2>
-   			</div> 
-			
-			<div class="clear"></div><br><br>
-			
-			
-				
-				<b><p style="float:left; width:100px;" ng-show="statesLoaded">State:</p>  </b>
-				<select style="float:left; " ng-show="statesLoaded"  ng-model="selectedState" ng-options="state.name for state in states">
-      				<option value="">All</option>
-      				<option value="">{{selectedState}}</option>
-    			</select>
-    			<div ng-show="statesNotFound">
+   				<b><p style="float:left; width:90px;" ng-show="reposLoaded">Repository:</p>  </b>	
+		    
+		    	<div class="styled-select">
+			    	<select  ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" 
+			    	ng-options="repository.name for repository in repos">
+						<option value="">{{selectedRepo}}</option>
+					</select>  
+		    	</div>
+   			
+	
+				<div ng-show="reposNotFound">
+	      		<h2>No Repo Info Found</h2>
+	   			</div>
+	   			
+				<div class="clear"></div><br><br>
+		
+				<b><p style="float:left; width:90px;" ng-show="statesLoaded">State:</p>  </b>
+    			<div multi-select
+					ng-show="statesLoaded" 
+					input-model="states"
+					output-model="resultState" 
+					button-label="name"
+					item-label="name"
+					selection-mode="single" 
+					default-label="All"
+					tick-property="ticked">
+				</div>  						
+				<div ng-show="statesNotFound">
 	      			<h2>No State Info Found</h2>
 	   			</div> 
     			
 				<div class="clear"></div><br><br>
-				
-				
-				<b><p style="float:left; width:100px;" ng-show="milestonesLoaded">Milestone:</p></b>
-				<select style="float:left;" ng-show="milestonesLoaded"  ng-model="selectedMilestone" ng-options="milestone.title for milestone in milestones">
-      				<option value="">All</option>
-      				<option value="">{{selectedMilestone}}</option>
-    			</select>
+								
+				<b><p style="float:left; width:90px;" ng-show="milestonesLoaded">Milestone:</p></b>
+    			<div multi-select
+					ng-show="milestonesLoaded" 
+					input-model="milestones"
+					output-model="resultMilestones" 
+					button-label="title"
+					item-label="title" 
+					tick-property="ticked"
+					on-item-click="drawUserProgressChart()">
+				</div>
     			<div ng-show="milestonesNotFound">
       				<h2>No Milestone info found</h2>
    				</div>
     			
 				<div class="clear"></div> <br><br> 
 				
-				<b><p style="float:left; width:100px;" ng-show="usersLoaded">User:</p></b>
-				<select style="float:left;" ng-show="usersLoaded" ng-model="selectedUser" ng-options="user.login for user in users">
-      				<option value="">All</option>
-      				<option value="">{{selectedUser}}</option>
-    			</select>
+				<b><p style="float:left; width:90px;" ng-show="usersLoaded">Assignee:</p></b>
+    			<div multi-select
+					ng-show="usersLoaded" 
+					input-model="users" 
+					output-model="resultUsers"
+					button-label="login"
+					item-label="login" 
+					tick-property="ticked">
+				</div>
     			<div ng-show="usersNotFound">
-      				<h2>No User Info Found</h2>
+      				<h2>No Assignee Info Found</h2>
    				</div>
     			
 				<div class="clear"></div><br><br>
 				
-				<b><p style="float:left; width:100px;" ng-show="labelsLoaded">Label:</p></b>
-				<select style="float:left;" ng-show="labelsLoaded" ng-model="selectedLabel" ng-options="label.name for label in labels">
-      				<option value="">All</option>
-      				<option value="">{{selectedLabel}}</option>
-    			</select>
+				<b><p style="float:left; width:90px;" ng-show="labelsLoaded">Label:</p></b>
+    			<div multi-select
+					ng-show="labelsLoaded" 
+					input-model="labels"
+					output-model="resultLabels" 
+					button-label="name"
+					item-label="name" 
+					tick-property="ticked">
+				</div>
     			<div ng-show="labelsNotFound">
 	      			<h2>No Label Info Found</h2>
 				</div>
 				
 				<div class="clear"></div><br><br>
 			
-			<button style="margin-left:100px;" ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="drawChart()">Summary</button> 
+			<button style="margin-left:90px;" ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="drawChart()">Summary</button> 
 			
 			<br><br>
 
@@ -99,19 +122,23 @@
 		<div style="float:left;" id="sprintCharts">
 			<!--div id="chart_div0"></div--><br>
 		</div>
+		<div style="text-align: center;" ng-show="milestoneNotSelected">
+	      	<h2>Please select a  milestone to see assignee's progress on issues</h2>
+		</div>
 		<div style="text-align: center;" ng-show="progressChartNotFound">
 	      	<h2>Progress chart inaccessible due to following possible reasons:
 	      	<ul>
-	      		<li><b><i>No milestone</i></b></li>
-	      		<li><b><i>No User</i></b></li>
+	      		<li><b><i>No Milestone</i></b></li>
+	      		<li><b><i>No Assignee</i></b></li>
 	      	</ul>
 	      	</h2>
 		</div>
 		
 		
 		<div id="ghapidata" class="clearfix"></div>
-		<p>Provided by UNIT Technologies and Information R&D Ltd.</p>
+		<p>Provided by UNIT Technologies and Information R&D Ltd. - (V1.3)</p>
 	</div>
+	<br><br>
 	
 	
 	<div id="table_div">
