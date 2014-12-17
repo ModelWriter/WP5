@@ -550,6 +550,16 @@ angular.module('GitAPI', ['multi-select'])
 	
 	$scope.drawUserProgressChart = function () {
 		
+		var counter = 0;
+		var selectedMilestones = [];
+		
+		angular.forEach( $scope.resultMilestones, function( value, key ) {
+			if ( value.ticked === true ) {
+				selectedMilestones.push(value.title);
+			}
+		});
+		
+
 		var selectedMilestone = "";
 		
 		var sprintCharts = document.getElementById('sprintCharts');
@@ -557,10 +567,12 @@ angular.module('GitAPI', ['multi-select'])
 			 sprintCharts.removeChild(sprintCharts.firstChild);
 		 }
 		
+		/*
 		if($scope.selectedMilestone != null)
 			  selectedMilestone = $scope.selectedMilestone.title; 
+		*/
 		
-		if(selectedMilestone == ""){
+		if(selectedMilestones.length == 0){
 			
 			$scope.milestoneNotSelected = true;
 			
@@ -568,10 +580,8 @@ angular.module('GitAPI', ['multi-select'])
 			
 			$scope.milestoneNotSelected = false;
 			
-			for(x = 0; x < milestoneList.length; x++){
-				 
-				if(milestoneList[x].title == selectedMilestone){
-					
+			for(x = 0; x < selectedMilestones.length; x++){
+				 				
 					 var completedHours;
 					 var toDoHours;
 					 var row = [];
@@ -649,11 +659,7 @@ angular.module('GitAPI', ['multi-select'])
 					  
 					  
 					  
-				} // end if 
-				else {
-					
-					
-				}
+				
 				  
 			 } // end for milestones
 		}
