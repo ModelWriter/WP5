@@ -58,18 +58,23 @@ angular.module('GitAPI', ['multi-select'])
 			});
 		  */
 		  
-		  if($scope.selectedState != null)
-			  selectedState = $scope.selectedState.name;
-		  
-		  if($scope.resultMilestones.length > 0){
+		  if($scope.resultState.length > 0){
+			  angular.forEach( $scope.resultState, function( value, key ) {
+				    if ( value.ticked === true ) {
+				        selectedState = value.name;
+				    }
+				});
+		  }
+			 
+		  if($scope.resultMilestones != null && $scope.resultMilestones.length > 0){
 			  milestoneSelected = true;
 		  }
 		  
-		  if($scope.resultLabels.length > 0){
+		  if($scope.resultLabels != null && $scope.resultLabels.length > 0){
 			  labelSelected = true;
 		  }
 
-		  if($scope.resultUsers.length > 0){
+		  if($scope.resultUsers != null && $scope.resultUsers.length > 0){
 			  userSelected = true;
 		  }
 		  
@@ -86,7 +91,7 @@ angular.module('GitAPI', ['multi-select'])
 
 			  conditionString += '"open" == issueTable[i][0] ';
 
-		  }else if(selectedState == "closed"){
+		  }else if(selectedState == "closed(done)"){
 
 			  conditionString += '"closed" == issueTable[i][0] ';
 		  }
@@ -152,7 +157,7 @@ angular.module('GitAPI', ['multi-select'])
 
 		  conditionString += ')';
 
-		  alert(conditionString);
+		  //alert(conditionString);
 
 		  var totalHours = "";
 
@@ -349,7 +354,7 @@ angular.module('GitAPI', ['multi-select'])
 								$scope.statesLoaded = true;
 								$scope.states = [
 								                 {name:'open'},
-								                 {name:'closed'}
+								                 {name:'closed(done)'}
 								               ];
 								$scope.buttonLoaded = true;
 							}else{

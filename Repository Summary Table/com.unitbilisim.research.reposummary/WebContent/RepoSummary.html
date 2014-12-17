@@ -37,9 +37,11 @@
    			
    			<b><p style="float:left; width:90px;" ng-show="reposLoaded">Repository:</p>  </b>	
 		    
-		    <select style="float:left;" ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" ng-options="repository.name for repository in repos">
-				<option value="">{{selectedRepo}}</option>
-			</select>  
+		    <div class="styled-select">
+		    	<select  ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" ng-options="repository.name for repository in repos">
+					<option value="">{{selectedRepo}}</option>
+				</select>  
+		    </div>
    			
 
 			<div ng-show="reposNotFound">
@@ -53,10 +55,24 @@
 				<b><p style="float:left; width:90px;" ng-show="statesLoaded">State:</p>  </b>
 				
 				
+				<!-- 
 				<select style="float:left; " ng-show="statesLoaded"  ng-model="selectedState" ng-options="state.name for state in states">
       				<option value="">All</option>
       				<option value="">{{selectedState}}</option>
-    			</select>				
+    			</select>	
+				 -->
+    			
+    			<div multi-select
+					ng-show="statesLoaded" 
+					input-model="states"
+					output-model="resultState" 
+					button-label="name"
+					item-label="name"
+					selection-mode="single" 
+					default-label="All"
+					tick-property="ticked">
+				</div>
+    						
 				<div ng-show="statesNotFound">
 	      			<h2>No State Info Found</h2>
 	   			</div> 
@@ -129,7 +145,7 @@
 				
 				<div class="clear"></div><br><br>
 			
-			<button style="margin-left:100px;" ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="drawChart()">Summary</button> 
+			<button style="margin-left:90px;" ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="drawChart()">Summary</button> 
 			
 			<br><br>
 
