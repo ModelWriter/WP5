@@ -587,7 +587,7 @@ angular.module('GitAPI', ['multi-select'])
 					 var row = [];
 					 var container = [];
 					 
-					 container.push(["User","To Do","Done"]);
+					 container.push(["Assignee","To Do","Done"]);
 					 
 					 for(i = 0; i < userList.length; i++){
 						  	
@@ -642,10 +642,10 @@ angular.module('GitAPI', ['multi-select'])
 					 var data = new google.visualization.arrayToDataTable(container);
 					  
 					 
-					  var title = "User Performance for " + milestoneList[x].title; 
+					  var title = "Assignee Performance for " + milestoneList[x].title; 
 					  var options = {
 							  title: title,
-							  hAxis: {title: 'Users', titleTextStyle: {color: 'black'}}
+							  hAxis: {title: 'Assignees', titleTextStyle: {color: 'black'}}
 					  };
 					  
 					  var newDiv = document.createElement('div');
