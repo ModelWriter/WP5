@@ -597,7 +597,7 @@ angular.module('GitAPI', ['multi-select'])
 						 toDoHours = 0;
 						  for(j = 0; j <issueTable.length; j++){
 							  
-							  if(issueTable[j][4] == userList[i].login && issueTable[j][5] == milestoneList[x].title){
+							  if(issueTable[j][4] == userList[i].login && issueTable[j][5] == selectedMilestones[x]){
 
 								  if(issueTable[j][6].charAt(1) == "h"){ ;
 
@@ -642,7 +642,7 @@ angular.module('GitAPI', ['multi-select'])
 					 var data = new google.visualization.arrayToDataTable(container);
 					  
 					 
-					  var title = "Assignee Performance for " + milestoneList[x].title; 
+					  var title = "Assignee Performance for " + selectedMilestones[x]; 
 					  var options = {
 							  title: title,
 							  hAxis: {title: 'Assignees', titleTextStyle: {color: 'black'}}
