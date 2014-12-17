@@ -33,9 +33,9 @@
 			
    			<div class="clear"></div>
    			
-   			<div id="selection" style="float:left;">
+   			<div id="selection" style="float:left; width:375px;">
    			
-   			<b><p style="float:left; width:100px;" ng-show="reposLoaded">Repository:</p>  </b>	
+   			<b><p style="float:left; width:90px;" ng-show="reposLoaded">Repository:</p>  </b>	
 		    
 		    <select style="float:left;" ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" ng-options="repository.name for repository in repos">
 				<option value="">{{selectedRepo}}</option>
@@ -50,7 +50,7 @@
 			
 			
 				
-				<b><p style="float:left; width:100px;" ng-show="statesLoaded">State:</p>  </b>
+				<b><p style="float:left; width:90px;" ng-show="statesLoaded">State:</p>  </b>
 				
 				
 				<select style="float:left; " ng-show="statesLoaded"  ng-model="selectedState" ng-options="state.name for state in states">
@@ -64,7 +64,7 @@
 				<div class="clear"></div><br><br>
 				
 				
-				<b><p style="float:left; width:100px;" ng-show="milestonesLoaded">Milestone:</p></b>
+				<b><p style="float:left; width:90px;" ng-show="milestonesLoaded">Milestone:</p></b>
 				
 				<!-- 
 				<select style="float:left;" ng-show="milestonesLoaded" ng-change="drawUserProgressChart()"  ng-model="selectedMilestone" ng-options="milestone.title for milestone in milestones">
@@ -87,7 +87,7 @@
     			
 				<div class="clear"></div> <br><br> 
 				
-				<b><p style="float:left; width:100px;" ng-show="usersLoaded">User:</p></b>
+				<b><p style="float:left; width:90px;" ng-show="usersLoaded">User:</p></b>
 				<!-- 
 				<select style="float:left;" ng-show="usersLoaded" ng-model="selectedUser" ng-options="user.login for user in users">
       				<option value="">All</option>
@@ -108,7 +108,7 @@
     			
 				<div class="clear"></div><br><br>
 				
-				<b><p style="float:left; width:100px;" ng-show="labelsLoaded">Label:</p></b>
+				<b><p style="float:left; width:90px;" ng-show="labelsLoaded">Label:</p></b>
 				<!-- 
 				<select style="float:left;" ng-show="labelsLoaded" ng-model="selectedLabel" ng-options="label.name for label in labels">
       				<option value="">All</option>

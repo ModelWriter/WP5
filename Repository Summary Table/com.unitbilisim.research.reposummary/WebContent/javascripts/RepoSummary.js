@@ -25,11 +25,13 @@ angular.module('GitAPI', ['multi-select'])
 		  totalHoursInProgress = 0;
 		  table.clearChart();
 		  
-		  var selectedUser = "all";
+		  var selectedState = "all";
+		  
 		  /*
 		  var selectedMilestone = "all";
 		  var selectedLabel = "all";
-		  var selectedState = "all";
+		  var selectedUser = "all";
+
 		  */		  
 		  var milestoneSelected = false;
 		  var userSelected = false;
@@ -58,19 +60,18 @@ angular.module('GitAPI', ['multi-select'])
 		  
 		  if($scope.selectedState != null)
 			  selectedState = $scope.selectedState.name;
-
-		  if($scope.selectedMilestone != null)
-			  selectedMilestone = $scope.selectedMilestone.title; 
-
-		  if($scope.selectedLabel != null)
-			  selectedLabel = $scope.selectedLabel.name; 
-
-		  if($scope.selectedUser != null)
-			  selectedUser = $scope.selectedUser.login; 
-
-		  // yukarıdakileri de dönüştür ve aşağıdaki hale sok
-		  if($scope.resultMilestones.length > 0)
+		  
+		  if($scope.resultMilestones.length > 0){
 			  milestoneSelected = true;
+		  }
+		  
+		  if($scope.resultLabels.length > 0){
+			  labelSelected = true;
+		  }
+
+		  if($scope.resultUsers.length > 0){
+			  userSelected = true;
+		  }
 		  
 		  //var conditionCount = 0;
 
@@ -91,6 +92,7 @@ angular.module('GitAPI', ['multi-select'])
 		  }
 
 		  if(milestoneSelected == true){
+			  
 			  var counter = 0;
 			  conditionString += ' && (';
 			  angular.forEach( $scope.resultMilestones, function( value, key ) {
@@ -103,35 +105,48 @@ angular.module('GitAPI', ['multi-select'])
 				    }
 				});
 			  conditionString += ')';
+		  }
+
+		  if(userSelected == true){
+
+			  var counter = 0;
+			  conditionString += ' && (';
+			  angular.forEach( $scope.resultUsers, function( value, key ) {
+				    if ( value.ticked === true ) {
+				    	if(counter > 0){
+				    		conditionString += ' || ';
+				    	}				    		
+						conditionString += '"' + value.login + '" == issueTable[i][4] ';
+						counter++;
+				    }
+				});
+			  conditionString += ')';
+		  }
+
+		  if(labelSelected == true){
+			 
+			  var counter = 0;
+			  conditionString += ' && (';
+			  angular.forEach( $scope.resultLabels, function( value, key ) {
+				    if ( value.ticked === true ) {
+				    	if(counter > 0){
+				    		conditionString += ' || ';
+				    	}				    		
+				    	conditionString += '"' + value.name + '" == issueTable[i][2] || "' 
+						  + value.name + '" == issueTable[i][3] || "' 
+						  + value.name + '" == issueTable[i][6] ';
+						counter++;
+				    }
+				});
+			  conditionString += ')';
+			  
 			  /*
-			  conditionString += ' && ';
-			  conditionString += '"' + selectedMilestone + '" == issueTable[i][5] ';
-			  */
-
-		  }
-
-		  if(selectedUser != "all"){
-
-			  conditionString += ' && ';			
-			  conditionString += '"' + selectedUser + '" == issueTable[i][4] ';		 
-		  }
-
-		  if(selectedLabel != "all"){
-			  //if(conditionCount > 0){
-
 			  conditionString += ' && (';
 			  conditionString += '"' + selectedLabel + '" == issueTable[i][2] || "' 
 			  + selectedLabel + '" == issueTable[i][3] || "' 
 			  + selectedLabel + '" == issueTable[i][6] ';
 			  conditionString += ')';
-
-			  //}else{
-			  //conditionString += '"' + selectedLabel + '" == issueTable[i][2] || "' 
-			  //				   + selectedLabel + '" == issueTable[i][3] || "'
-			  //			   + selectedLabel + '" == issueTable[i][6] ';
-			  //}
-
-			  //conditionCount++;
+			  */
 		  }
 
 
