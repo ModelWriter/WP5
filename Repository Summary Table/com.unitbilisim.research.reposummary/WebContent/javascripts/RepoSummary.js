@@ -656,10 +656,6 @@ angular.module('GitAPI', ['multi-select'])
 					  
 					  
 					  chart.draw(data, options);
-					  
-					  
-					  
-				
 				  
 			 } // end for milestones
 		}
