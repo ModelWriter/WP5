@@ -66,6 +66,7 @@ angular.module('GitAPI', ['multi-select'])
 				});
 		  }
 			 
+		  /*
 		  if($scope.resultMilestones != null && $scope.resultMilestones.length > 0){
 			  milestoneSelected = true;
 		  }
@@ -77,6 +78,7 @@ angular.module('GitAPI', ['multi-select'])
 		  if($scope.resultUsers != null && $scope.resultUsers.length > 0){
 			  userSelected = true;
 		  }
+		  */
 		  
 		  //var conditionCount = 0;
 
@@ -96,7 +98,7 @@ angular.module('GitAPI', ['multi-select'])
 			  conditionString += '"closed" == issueTable[i][0] ';
 		  }
 
-		  if(milestoneSelected == true){
+		  if($scope.resultMilestones != null && $scope.resultMilestones.length > 0){
 			  
 			  var counter = 0;
 			  conditionString += ' && (';
@@ -112,7 +114,7 @@ angular.module('GitAPI', ['multi-select'])
 			  conditionString += ')';
 		  }
 
-		  if(userSelected == true){
+		  if($scope.resultUsers != null && $scope.resultUsers.length > 0){
 
 			  var counter = 0;
 			  conditionString += ' && (';
@@ -128,7 +130,7 @@ angular.module('GitAPI', ['multi-select'])
 			  conditionString += ')';
 		  }
 
-		  if(labelSelected == true){
+		  if($scope.resultLabels != null && $scope.resultLabels.length > 0){
 			 
 			  var counter = 0;
 			  conditionString += ' && (';
