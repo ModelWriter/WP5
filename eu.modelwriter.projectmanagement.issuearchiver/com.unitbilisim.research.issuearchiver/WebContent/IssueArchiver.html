@@ -66,6 +66,7 @@
 					button-label="name"
 					item-label="name"
 					selection-mode="single" 
+					on-item-click="fiterIssues()"
 					default-label="All"
 					tick-property="ticked">
 				</div>  						
@@ -77,12 +78,13 @@
 	   			
 	   			<div id="div">
 	   				<h2 style="float:left;" id="issueCount"></h2>
-	   			</div>
+	   			</div> 
 	   			
 	   			<!-- <button ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="download()">Export</button>
 	   			 --> 
-	   			<h2 id="save"></h2>
-
+	   			 
+				<div class="clear"></div><br><br>
+				<a ng-show="buttonLoaded" href="#" id="downloadbtn" ng-click="download()">Save Issues</a> 
 	   			
 			</div>
 		
