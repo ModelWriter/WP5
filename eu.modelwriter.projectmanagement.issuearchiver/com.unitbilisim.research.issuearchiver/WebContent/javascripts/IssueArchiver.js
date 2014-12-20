@@ -10,32 +10,7 @@ angular.module('IssueArchiver', ['multi-select'])
 	var reposNotFound = false;
 
 	$scope.download = function(){  
-
-		issueFile = '';
-		
-		var selectedState = "all";
-
-		if($scope.resultState.length > 0){
-			angular.forEach( $scope.resultState, function( value, key ) {
-				if ( value.ticked === true ) {
-					selectedState = value.name;
-				}
-			});
-		}
-
-		if(selectedState == "all"){
-
-			convertToJson("open");
-			convertToJson("closed");
-			
-		}else if(selectedState == "open"){
-
-			convertToJson("open");
-		}else{
-
-			convertToJson("closed");
-		}
-
+	
 		var blob = new Blob([issueFile], {type: "application/text"});
 		var url  = URL.createObjectURL(blob);
 
@@ -43,16 +18,54 @@ angular.module('IssueArchiver', ['multi-select'])
 		a.download    = "issues.txt";
 		a.href        = url;
 		a.textContent = "Download as Text";
-
-		//document.getElementById('save').appendChild(a);
-
+	}
+	
+	$scope.filterIssues = function () {
+		
+		var selectedState = "all";
+		var count = 0;
+		issueFile = '';
+		
+		if($scope.resultState.length > 0){
+			angular.forEach( $scope.resultState, function( value, key ) {
+				if ( value.ticked === true ) {
+					selectedState = value.name;
+				}
+			});
+		}
+		
+		if(selectedState == "all"){
+			
+			document.getElementById('issueCount').innerHTML = issueList.length+" issues found !";
+			convertToJson(selectedState);
+		
+		}else{
+			
+			convertToJson(selectedState);
+			for(j = 0; j < issueList.length; j++){
+				
+				if(issueList[j].state == selectedState){
+					count++;
+				}
+				
+			}
+			
+			document.getElementById('issueCount').innerHTML = count+" issues found !";
+			
+		}
+		
+		
+		
 		function convertToJson(condition) {
-
+			var issueCount = 0;
+			
 			if(issueList.length > 0){
 				
 				for(j = 0; j < issueList.length; j++){
 					
-					if(issueList[j].state == condition){
+					if(issueList[j].state == condition || condition == "all"){
+						
+						issueCount++;
 						
 						issueFile += 'Issue Number : ' + issueList[j].number + '\n';
 						issueFile += '\t Title : ' + issueList[j].title + '\n';
@@ -101,9 +114,12 @@ angular.module('IssueArchiver', ['multi-select'])
 					
 				}
 				
+				
+				
 			}
-		}
-
+		}// end function convertToText
+		
+		
 	}
 
 
@@ -192,8 +208,9 @@ angular.module('IssueArchiver', ['multi-select'])
 					$scope.selectedState = null;
 					$scope.statesLoaded = true;
 					$scope.states = [
+					                 {name:'all'},
 					                 {name:'open'},
-					                 {name:'closed(done)'}
+					                 {name:'closed'}
 					                 ];
 					$scope.buttonLoaded = true;
 					document.getElementById('issueCount').innerHTML = issueList.length+" issues found !";
