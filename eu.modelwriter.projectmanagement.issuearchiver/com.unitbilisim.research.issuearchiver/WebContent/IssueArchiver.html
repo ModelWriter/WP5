@@ -1,11 +1,11 @@
 <!doctype html>
 <html ng-app="IssueArchiver">
 <head>
-
+<!--
  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
- 
- <!-- <script type="text/javascript" src="javascripts/angular.min.js"></script>
-  -->
+-->
+  <script type="text/javascript" src="javascripts/angular.min.js"></script>
+  
 <script type="text/javascript" src="javascripts/angular-multi-select.js"></script> 
 <link rel="stylesheet" type="text/css" media="all" href="stylesheets/angular-multi-select.css">
 <meta charset="utf-8">
@@ -75,14 +75,15 @@
 	   			
 	   			<div class="clear"></div><br><br>
 	   			
-	   			<div>
-	   				<h2 id="issueCount"></h2>
+	   			<div id="div">
+	   				<h2 style="float:left;" id="issueCount"></h2>
 	   			</div>
 	   			
-	   			<button style="margin-left:90px;" ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="saveIssues()">Save Issues</button>
-	   			 
+	   			<!-- <button ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="download()">Export</button>
+	   			 --> 
+	   			<h2 id="save"></h2>
 
-
+	   			
 			</div>
 		
 		<div id="ghapidata" class="clearfix"></div>
@@ -91,6 +92,7 @@
 	<br><br>
 	
 </div>
+
 </body>
 
 </html>
