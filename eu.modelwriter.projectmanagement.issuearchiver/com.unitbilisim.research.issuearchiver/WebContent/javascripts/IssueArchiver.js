@@ -124,7 +124,7 @@ angular.module('IssueArchiver', ['multi-select'])
 			}
 		}// end function convertToText
 		
-		alert(issueFile);
+		// alert(issueFile);
 		
 	}
 
