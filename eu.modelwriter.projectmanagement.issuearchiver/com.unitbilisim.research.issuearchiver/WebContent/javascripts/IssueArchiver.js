@@ -26,12 +26,15 @@ angular.module('IssueArchiver', ['multi-select'])
 		var count = 0;
 		issueFile = '';
 		
-		if($scope.resultState.length > 0){
-			angular.forEach( $scope.resultState, function( value, key ) {
-				if ( value.ticked === true ) {
-					selectedState = value.name;
-				}
-			});
+		if($scope.resultState != null){
+			
+			if($scope.resultState.length > 0){
+				angular.forEach( $scope.resultState, function( value, key ) {
+					if ( value.ticked === true ) {
+						selectedState = value.name;
+					}
+				});
+			}
 		}
 		
 		if(selectedState == "all"){
@@ -63,43 +66,44 @@ angular.module('IssueArchiver', ['multi-select'])
 				
 				for(j = 0; j < issueList.length; j++){
 					
+					// Header ex. Open issues for repositories WP3, WP5  
+					
 					if(issueList[j].state == condition || condition == "all"){
 						
 						issueCount++;
 						
-						issueFile += 'Issue Number : ' + issueList[j].number + '\n';
-						issueFile += '\t Title : ' + issueList[j].title + '\n';
+						issueFile += '\r\n#' + issueList[j].number + ' ' + issueList[j].title + '\r\n';
 
 						if(issueList[j].body != null){
 
-							issueFile += '\t Body : ' + issueList[j].body + '\n';
+							issueFile += '\tBody : ' + issueList[j].body + '\r\n';
 						}else{
 
-							issueFile += '\t body : no body \n';
+							issueFile += '\tBody : no body ';
 						}
 
 						if(issueList[j].assignee != null){
 
-							issueFile += '\t assignee : ' + issueList[j].assignee.login + '\n';
+							issueFile += '\tAssignee : ' + issueList[j].assignee.login + '\r\n';
 						}else{
 
-							issueFile += '\t assignee : no assignee \n';
+							issueFile += '\tAssignee : no assignee \r\n';
 						}
 
 						if(issueList[j].milestone!= null){
 
-							issueFile += '\t milestone : ' + issueList[j].milestone.title + '\n';
+							issueFile += '\tMilestone : ' + issueList[j].milestone.title + '\r\n';
 						}else{
 
-							issueFile += '\t milestone : no milestone \n';
+							issueFile += '\tMilestone : no milestone \r\n';
 						}
 
-						issueFile += ' \t labels : [';
+						issueFile += '\tLabels : [';
 						if(issueList[j].labels.length != 0){
 
 							for(i = 0; i < issueList[j].labels.length; i++){
 
-								issueFile += ' name : ' + issueList[j].labels[i].name + ',';
+								issueFile += '\r\n\t\t' + 'name : ' + issueList[j].labels[i].name + ',';
 							}
 
 						}else{
@@ -107,10 +111,11 @@ angular.module('IssueArchiver', ['multi-select'])
 							issueFile += 'no label';
 						}
 
-						issueFile += ']\n';
+						issueFile += ']\r\n';
 						
 						
 					}
+					issueFile += '\r\n';
 					
 				}
 				
@@ -119,6 +124,7 @@ angular.module('IssueArchiver', ['multi-select'])
 			}
 		}// end function convertToText
 		
+		alert(issueFile);
 		
 	}
 
@@ -150,11 +156,14 @@ angular.module('IssueArchiver', ['multi-select'])
 			$scope.repos = data;				
 			$scope.selectedRepo = null;									
 			$scope.reposLoaded = true;
+			
 
 		}).error(function () {
 
 			$scope.reposNotFound = true;
 		});
+		
+		
 
 	}
 
@@ -203,7 +212,7 @@ angular.module('IssueArchiver', ['multi-select'])
 
 				} // end for data	
 
-
+					
 				if(issueList.length > 0){
 					$scope.selectedState = null;
 					$scope.statesLoaded = true;
@@ -214,6 +223,7 @@ angular.module('IssueArchiver', ['multi-select'])
 					                 ];
 					$scope.buttonLoaded = true;
 					document.getElementById('issueCount').innerHTML = issueList.length+" issues found !";
+					$scope.filterIssues();
 
 				}
 
