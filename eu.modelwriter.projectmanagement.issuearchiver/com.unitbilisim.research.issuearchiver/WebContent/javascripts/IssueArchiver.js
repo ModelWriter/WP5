@@ -2,6 +2,8 @@
 
 var issueList = [];
 var issueFile = '';
+var repositoriesForFile = '';
+var stateForFile = 'All';
 
 angular.module('IssueArchiver', ['multi-select'])
 .controller('IssueArchiverCtrl', function($scope, $http, $parse) {
@@ -39,12 +41,15 @@ angular.module('IssueArchiver', ['multi-select'])
 		
 		if(selectedState == "all"){
 			
+			
 			document.getElementById('issueCount').innerHTML = issueList.length+" issues found !";
 			convertToJson(selectedState);
 		
 		}else{
 			
+			stateForFile = selectedState;
 			convertToJson(selectedState);
+			
 			for(j = 0; j < issueList.length; j++){
 				
 				if(issueList[j].state == selectedState){
@@ -64,13 +69,16 @@ angular.module('IssueArchiver', ['multi-select'])
 			
 			if(issueList.length > 0){
 				
+				issueFile += stateForFile + ' issues for repositories: ' + repositoriesForFile + '\r\n___________________________';
+				
 				for(j = 0; j < issueList.length; j++){
 					
 					// Header ex. Open issues for repositories WP3, WP5  
-					
+				
 					if(issueList[j].state == condition || condition == "all"){
 						
 						issueCount++;
+						
 						
 						issueFile += '\r\n#' + issueList[j].number + ' ' + issueList[j].title + '\r\n';
 
@@ -79,7 +87,7 @@ angular.module('IssueArchiver', ['multi-select'])
 							issueFile += '\tBody : ' + issueList[j].body + '\r\n';
 						}else{
 
-							issueFile += '\tBody : no body ';
+							issueFile += '\tBody : no body \r\n';
 						}
 
 						if(issueList[j].assignee != null){
@@ -172,6 +180,7 @@ angular.module('IssueArchiver', ['multi-select'])
 		issueList = [];
 		openIssues = [];
 		closedIssues = [];
+		repositoriesForFile = '';
 		
 		$scope.statesNotFound = false;
 		var repoCount = $scope.resultRepos.length;
@@ -183,7 +192,7 @@ angular.module('IssueArchiver', ['multi-select'])
 			for(i = 0; i < repoCount; i++){
 
 				getAll($scope.resultRepos[i].name);
-
+				repositoriesForFile += $scope.resultRepos[i].name + ', ';
 			}
 
 		}
