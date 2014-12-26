@@ -1,12 +1,10 @@
 <!doctype html>
 <html ng-app="IssueArchiver">
 <head>
-<!--
- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
--->
-  <script type="text/javascript" src="javascripts/angular.min.js"></script>
-  
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
 <script type="text/javascript" src="javascripts/angular-multi-select.js"></script> 
+
 <link rel="stylesheet" type="text/css" media="all" href="stylesheets/angular-multi-select.css">
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html">
@@ -34,12 +32,6 @@
  			<br>
    			
    				<b><p style="float:left; width:90px;" ng-show="reposLoaded">Repository:</p>  </b>			    	
-			    <!-- 
-			     <select  ng-show="reposLoaded" ng-model="selectedRepo" ng-change="fillFields()" 
-			    ng-options="repository.name for repository in repos">
-					<option value="">{{selectedRepo}}</option>
-				</select> 
-				-->
 				<div multi-select
 					ng-show="reposLoaded" 
 					input-model="repos"
@@ -79,17 +71,14 @@
 	   			<div id="div" style="float:right; padding-right:35px;" >
 	   				<h2 id="issueCount"></h2>
 	   			</div> 
-	   			
-	   			<!-- <button ng-show="buttonLoaded" id="ghsubmitbtn" ng-click="download()">Export</button>
-	   			 --> 
 	   			 
 				<div class="clear"></div><br>
 				<a ng-show="buttonLoaded" href="#" id="downloadbtn" ng-click="download()">Save Issues</a> 
-	   			
+
 			</div>
 		
 		<div id="ghapidata" class="clearfix"></div>
-		<p>Provided by UNIT Technologies and Information R&D Ltd. - V1.0</p>
+		<p>Developed by UNIT Technologies and Information R&D Ltd. - V1.0</p>
 	</div>
 	<br><br>
 	

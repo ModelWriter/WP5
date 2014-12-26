@@ -1,16 +1,23 @@
+/**
+ * IssueArchiver is a simple tool to store your issues for your organization
+ * 
+ * @author furkan.tanriverdi@unitbilisim.com
+ * 
+ */
 
-
-var issueList = [];
-var issueFile = '';
-var repositoriesForFile = '';
+var issueList = []; // All issues fetched from GitHub
+var issueFile = ''; // File stores issues to be downloaded
+var repositoriesForFile = ''; 
 var stateForFile = 'All';
 
 angular.module('IssueArchiver', ['multi-select'])
-.controller('IssueArchiverCtrl', function($scope, $http, $parse) {
-
+.controller('IssueArchiverCtrl',['$scope', '$http', '$parse',  function($scope, $http, $parse) {
 
 	var reposNotFound = false;
 
+	/**
+	 * Function to download issues as .txt file
+	 */
 	$scope.download = function(){  
 	
 		var blob = new Blob([issueFile], {type: "application/text"});
@@ -22,6 +29,10 @@ angular.module('IssueArchiver', ['multi-select'])
 		a.textContent = "Download as Text";
 	}
 	
+	/**
+	 * Function to filter issues according to their states
+	 * 
+	 */
 	$scope.filterIssues = function () {
 		
 		var selectedState = "all";
@@ -43,12 +54,12 @@ angular.module('IssueArchiver', ['multi-select'])
 			
 			
 			document.getElementById('issueCount').innerHTML = issueList.length+" issues found !";
-			convertToJson(selectedState);
+			convertToFile(selectedState);
 		
 		}else{
 			
 			stateForFile = selectedState;
-			convertToJson(selectedState);
+			convertToFile(selectedState);
 			
 			for(j = 0; j < issueList.length; j++){
 				
@@ -63,8 +74,10 @@ angular.module('IssueArchiver', ['multi-select'])
 		}
 		
 		
-		
-		function convertToJson(condition) {
+		/**
+		 * Function to convert json objects to readable text 
+		 */
+		function convertToFile(condition) {
 			var issueCount = 0;
 			
 			if(issueList.length > 0){
@@ -130,13 +143,14 @@ angular.module('IssueArchiver', ['multi-select'])
 				
 				
 			}
-		}// end function convertToText
-		
-		// alert(issueFile);
+		}		
 		
 	}
 
-
+	/**
+	 * 
+	 * Function to get repositories for an organization
+	 */
 	// Get Repositories
 	$scope.getRepos = function() {
 
@@ -175,6 +189,9 @@ angular.module('IssueArchiver', ['multi-select'])
 
 	}
 
+	/**
+	 * Function to fetch all issues for selected repositories
+	 */
 	$scope.getIssues = function () {
 
 		issueList = [];
@@ -213,14 +230,10 @@ angular.module('IssueArchiver', ['multi-select'])
 
 				//alert("issue get");
 				for(j in data){
-
-					
 					
 					issueList.push(data[j]);
-					//convertToText(0);
 
-				} // end for data	
-
+				} 
 					
 				if(issueList.length > 0){
 					$scope.selectedState = null;
@@ -235,16 +248,6 @@ angular.module('IssueArchiver', ['multi-select'])
 					$scope.filterIssues();
 
 				}
-
-
-
-				/*
-						if($scope.progressChartNotFound == true){
-							$scope.milestoneNotSelected = false;
-						}else{
-							$scope.milestoneNotSelected = true;
-						}
-				 */
 
 			}).error(function (data,status,as, config) {
 
@@ -261,4 +264,4 @@ angular.module('IssueArchiver', ['multi-select'])
 
 
 
-});
+}]);
