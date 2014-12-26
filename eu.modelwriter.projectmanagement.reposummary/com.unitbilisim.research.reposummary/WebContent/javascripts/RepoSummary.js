@@ -1,9 +1,16 @@
+/**
+ * RepoSummary is a tool to see issues organized and user progress visualized for milestones 
+ * 
+ * @author furkan.tanriverdi@unitbilisim.com
+ * 
+ */
 
-var issueList = [];
-var milestoneList = [];
-var labelList = [];
-var userList = [];
-var issueTable = [];
+
+var issueList = []; // Array to keep all issues for selected repo
+var milestoneList = []; // Array to keep all milestones for selected repo 
+var labelList = []; // Array to keep all labels for selected repo
+var userList = []; // Array to keep all assignees for selected repo
+var issueTable = []; // Array to keep issues which is filtered according to selected label(s), milestone(s) or assignee(s)
 var table = null;
 
 google.load("visualization", "1", {packages:["table","corechart"]});
@@ -17,6 +24,9 @@ angular.module('GitAPI', ['multi-select'])
 	  
 	  table = new google.visualization.Table(document.getElementById('table_div'));
 	  
+	  /**
+	   * Function to draw Google Chart
+	   */
 	  $scope.drawChart = function() {
 
 
@@ -65,20 +75,6 @@ angular.module('GitAPI', ['multi-select'])
 				    }
 				});
 		  }
-			 
-		  if($scope.resultMilestones != null && $scope.resultMilestones.length > 0){
-			  milestoneSelected = true;
-		  }
-		  
-		  if($scope.resultLabels != null && $scope.resultLabels.length > 0){
-			  labelSelected = true;
-		  }
-
-		  if($scope.resultUsers != null && $scope.resultUsers.length > 0){
-			  userSelected = true;
-		  }
-		  
-		  //var conditionCount = 0;
 
 		  var conditionString = "if(";
 
@@ -96,7 +92,7 @@ angular.module('GitAPI', ['multi-select'])
 			  conditionString += '"closed" == issueTable[i][0] ';
 		  }
 
-		  if(milestoneSelected == true){
+		  if($scope.resultMilestones != null && $scope.resultMilestones.length > 0){
 			  
 			  var counter = 0;
 			  conditionString += ' && (';
@@ -112,7 +108,7 @@ angular.module('GitAPI', ['multi-select'])
 			  conditionString += ')';
 		  }
 
-		  if(userSelected == true){
+		  if($scope.resultUsers != null && $scope.resultUsers.length > 0){
 
 			  var counter = 0;
 			  conditionString += ' && (';
@@ -128,7 +124,7 @@ angular.module('GitAPI', ['multi-select'])
 			  conditionString += ')';
 		  }
 
-		  if(labelSelected == true){
+		  if($scope.resultLabels != null && $scope.resultLabels.length > 0){
 			 
 			  var counter = 0;
 			  conditionString += ' && (';
@@ -144,20 +140,10 @@ angular.module('GitAPI', ['multi-select'])
 				    }
 				});
 			  conditionString += ')';
-			  
-			  /*
-			  conditionString += ' && (';
-			  conditionString += '"' + selectedLabel + '" == issueTable[i][2] || "' 
-			  + selectedLabel + '" == issueTable[i][3] || "' 
-			  + selectedLabel + '" == issueTable[i][6] ';
-			  conditionString += ')';
-			  */
 		  }
 
 
 		  conditionString += ')';
-
-		  //alert(conditionString);
 
 		  var totalHours = "";
 
@@ -200,21 +186,17 @@ angular.module('GitAPI', ['multi-select'])
 				  eval(conditionString + "{ " + 
 						  "data.addRow(issueTable[i]);"+ totalHours +"}");
 
-
 			  }
-			  
-			  
+			  			  
 			  document.getElementById('table_div').setAttribute("style","display:block");
-			  
-			  
-			  table.draw(data, {showRowNumber: true});
-			  //alert("Done:"+totalHoursDone+", \n in progress:"+totalHoursInProgress+"\n todo:"+totalHoursToDo);
-			  
-			  
+			  			  
+			  table.draw(data, {showRowNumber: true});			  
 		  }
 	  }
 	   
-	   // Get Repositories
+	   /**
+	    * Function to fetch all repositories for an organization
+	    */
 	   $scope.getRepos = function() {
 		    
 		   if($scope.orgname == null || $scope.orgname == ""){
@@ -269,14 +251,15 @@ angular.module('GitAPI', ['multi-select'])
 								
 	   }
 	   
-	   
+	   /**
+	    * Function to fill out select boxes
+	    */
 	$scope.fillFields = function(){
 		var sprintCharts = document.getElementById('sprintCharts');
 		while (sprintCharts.firstChild) {
 			 sprintCharts.removeChild(sprintCharts.firstChild);
 		 }
-		
-		//$scope.milestoneNotSelected = true;
+
 		  
 		issueList = [];
 		milestoneList = [];
@@ -291,57 +274,47 @@ angular.module('GitAPI', ['multi-select'])
 		$scope.progressChartNotFound = false;
 		
 		
-		
-		//$scope.drawChart();
 		document.getElementById('table_div').setAttribute("style","display:none");
 		
 				$http.get("https://api.github.com/repos/"+$scope.orgname+"/"+$scope.selectedRepo.name+"/issues?state=all&per_page=1000").success(function (data) {//Getting issues for org and repo
 			
-						//alert("issue get");
 						for(j in data){
 				
 							issueList.push(data[j]);
 						}	
-						//$scope.issueFound = data.length > 0;
 						issueParse();
-						//drawUserProgressCharts();
-						
-						
-							//$scope.labels = labelList;
+												
 							if(labelList.length > 0){
 								$scope.selectedLabel = null;
 								$scope.labelsLoaded = true;
 								$scope.labels = labelList;
 							}else{
-								//$scope.labels = [];
+								
 								$scope.labelsLoaded = false;
 								$scope.labelsNotFound = true;
 								$scope.selectedLabel = null;
 							}
 							
-						
-						
-							//$scope.milestones = milestoneList;
+
 							if(milestoneList.length > 0){
 								$scope.selectedMilestone = null;
 								$scope.milestonesLoaded = true;
 								$scope.milestones = milestoneList;
 							}else{
-								//$scope.milestones = [];
+							
 								$scope.milestonesLoaded = false;
 								$scope.milestonesNotFound = true;	
 								$scope.selectedMilestone = null;
 								$scope.progressChartNotFound = true;
 							}
 						
-						
-							//$scope.users = userList;
+
 							if(userList.length > 0){
 								$scope.selectedUser = null;
 								$scope.usersLoaded = true;
 								$scope.users = userList;
 							}else{
-								//$scope.users = [];
+								
 								$scope.usersLoaded = false;
 								$scope.usersNotFound = true;
 								$scope.selectedUser = null;
@@ -358,6 +331,7 @@ angular.module('GitAPI', ['multi-select'])
 								               ];
 								$scope.buttonLoaded = true;
 							}else{
+								
 								$scope.statesLoaded = false;
 								$scope.statesNotFound = true;
 								$scope.buttonLoaded = false;
@@ -369,8 +343,7 @@ angular.module('GitAPI', ['multi-select'])
 								$scope.milestoneNotSelected = false;
 							}else{
 								$scope.milestoneNotSelected = true;
-							}
-							
+							}							
 						
 				}).error(function (data,status,as, config) {
  			
@@ -379,7 +352,9 @@ angular.module('GitAPI', ['multi-select'])
 				});
 		
 		
-		
+		/**
+		 * Function to create issue tables
+		 */
 		function issueParse (){		
 			
 
@@ -387,18 +362,12 @@ angular.module('GitAPI', ['multi-select'])
 				
 				var value = [];// Table Row
 
-				
-				//value.push(issueList[i].number);// Filling row elements...			
-				
-				//state
 				value.push(issueList[i].state);
 				var state = issueList[i].state;
 				
-				//title
 				value.push(issueList[i].title);
 				
-				// state
-				// task
+				
 				if(issueList[i].labels.length != 0){
 					findProgress(value,issueList[i]);					
 					findTask(value,issueList[i].labels);
@@ -412,7 +381,7 @@ angular.module('GitAPI', ['multi-select'])
 					value.push("no task assigned");
 				}
 				
-				// user
+				
 				if(issueList[i].assignee != null){
 					
 					value.push(issueList[i].assignee.login);
@@ -425,8 +394,7 @@ angular.module('GitAPI', ['multi-select'])
 					value.push("no assignee");
 				}
 				
-				
-				// milestone
+
 				if(issueList[i].milestone != null){
 					
 					value.push(issueList[i].milestone.title);
@@ -438,7 +406,7 @@ angular.module('GitAPI', ['multi-select'])
 					value.push("no milestone");
 				}
 				
-				// effort
+
 				if(issueList[i].labels.length != 0){
 					findEffort(value,issueList[i].labels);
 					
@@ -449,11 +417,14 @@ angular.module('GitAPI', ['multi-select'])
 				}
 				
 				
-				issueTable.push(value);// Constracting table row...
+				issueTable.push(value);
 			}
 		}
 		
-		function findProgress(v,issue){// Parsing label which is state status...(v is cell of the table)
+		/**
+		 * function to find issue's progress state
+		 */
+		function findProgress(v,issue){
 			
 			for(i in issue.labels){
 
@@ -469,35 +440,44 @@ angular.module('GitAPI', ['multi-select'])
 				
 				
 			}
-			v.push("no progress");// If there is no assignment with state...
+			v.push("no progress");
 		}
 		
-		function findTask(v,labels){// Parsing label which is task...
+		/**
+		 * Function to find issue's task
+		 */
+		function findTask(v,labels){
 			
 			var str;
 			
 			for(i in labels){
 					
-				if(labels[i].name.match(/(T[0-9]+)/)){// if first element T and next is number...
+				if(labels[i].name.match(/(T[0-9]+)/)){
 					v.push(labels[i].name);
 					return;
 				}
 			}
-			v.push("no task");// If there is no task assignment...
+			v.push("no task");
 		}
 		
-		function findEffort(v,labels){// Find effort date like 2d , 1h
+		/**
+		 * Function to find issue's effort assigned to assignee
+		 */
+		function findEffort(v,labels){
 			
 			for(var i = 0; i < labels.length; i++){
 				
-				if(labels[i].name.match(/[1-9][h,d]|(10)[h,d]/) != null){//Compare label value with work our regular exp. ...
+				if(labels[i].name.match(/[1-9][h,d]|(10)[h,d]/) != null){
 					v.push(labels[i].name);
 					return;
 				}	
 			}
-			v.push("no effort");	// If there is no work our assignment...
+			v.push("no effort");
 		}
 		
+		/**
+		 * Function to find issue's labels
+		 */
 		function fillLabels(labels){
 			
 			for(var i in labels){
@@ -508,6 +488,9 @@ angular.module('GitAPI', ['multi-select'])
 			}
 		}
 		
+		/**
+		 * Function to know if label exists
+		 */
 		function isLabelExist(label){
 				
 			var exist = false;
@@ -520,6 +503,9 @@ angular.module('GitAPI', ['multi-select'])
 				return exist;		
 		}
 		
+		/**
+		 * Function to know if milestone exists
+		 */
 		function isMilestoneExist(milestone){
 			
 			var exist = false;
@@ -532,6 +518,9 @@ angular.module('GitAPI', ['multi-select'])
 				return exist;		
 		}
 		
+		/**
+		 * Function to know if user exists
+		 */
 		function isUserExist(user){
 			
 			var exist = false;
@@ -548,6 +537,9 @@ angular.module('GitAPI', ['multi-select'])
 	
 	}
 	
+	/**
+	 * Function to draw progress charts for users
+	 */
 	$scope.drawUserProgressChart = function () {
 		
 		var counter = 0;
@@ -567,10 +559,6 @@ angular.module('GitAPI', ['multi-select'])
 			 sprintCharts.removeChild(sprintCharts.firstChild);
 		 }
 		
-		/*
-		if($scope.selectedMilestone != null)
-			  selectedMilestone = $scope.selectedMilestone.title; 
-		*/
 		
 		if(selectedMilestones.length == 0){
 			
@@ -657,7 +645,7 @@ angular.module('GitAPI', ['multi-select'])
 					  
 					  chart.draw(data, options);
 				  
-			 } // end for milestones
+			 } 
 		}
 		
 		
