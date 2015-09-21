@@ -16,6 +16,7 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
     - Several prototypes are realized (D2.3.1)
     - Software Deliverables of technical work packages (WP2, WP3, WP4, WP6)
     - Design of each technical workpackage is proposed.
+    
     - List and Classify several most important ERAs
   - Present a single slide with all the deliverables due to date, and their current status
     - from PPR excel file
@@ -41,7 +42,7 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
       - UC-BE-01: Requirements IT (SOGETI)
       - UC-BE-02: Automated test generation (SOGETI)
 
-3. **Progress of the Project in WP base** (1h:00min):  [**10:00 - 11:00**]
+3. **Progress Status per WP** (60min):  [**10:00 - 11:00**]
     - WP1: Industrial Use Cases and Requirements (AIRBUS) - Anne
         - Software requirements
         - User requirements
