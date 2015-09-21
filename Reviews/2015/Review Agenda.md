@@ -21,7 +21,7 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
     - from PPR excel file
     - 60/134 deliverables are submitted, some of them are initialized.  
   - The schedule of the day
-2.  **Use-cases and exploitation prospects** (5 min each => 45min):  [**09:15 - 10:00**]
+3.  **Use-cases and exploitation prospects** (5 min each => 45min):  [**09:15 - 10:00**]
     - France
       - UC-FR-01: Synchronization between Models and Documentation (OBEO) - Yvan
       - UC-FR-02: Enterprise Architecture (OBEO) - Yvan
@@ -41,7 +41,7 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
       - UC-BE-01: Requirements IT (SOGETI)
       - UC-BE-02: Automated test generation (SOGETI)
 
-3. **Progress Status per WP** (60min):  [**10:00 - 11:00**]
+4. **Progress Status per WP** (60min):  [**10:00 - 11:00**]
     - WP1: Industrial Use Cases and Requirements (AIRBUS) - Anne
         - Software requirements
         - User requirements
@@ -75,7 +75,7 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
              - System Installation Component Ontology	(De facto standard) - Anne Monceaux
              - Semantic Annotator	Open Source Software (Standardisation)	Claire Gardent
 
-4. **Demonstrations** (30 min): [**11:00 - 11:30**]
+5. **Demonstrations** (30 min): [**11:00 - 11:30**]
    _prepare a step by step todo list_
    * Phase One: (Mariem and Anne)
       - Semantic parsing and consistency check - Mariem
@@ -109,7 +109,7 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
       - Alloy based controls
         - Show markers
 
-5. **Summary of the current status, the achievements and the expectation (Exploitation)** (10min): [**11:30 - 11:45**] - Ferhat
+6. **Summary of the current status, the achievements and the expectation (Exploitation)** (10min): [**11:30 - 11:45**] - Ferhat
     - Current status: how much we progressed (in WP base), how much deliverables are done/left
 
     - Achievement: text to RDF, Marker in text and model, linking the concepts
@@ -118,13 +118,13 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
     - New partners for exploitation: Havelsan and Ford-Otosan
     - Exploitation plans: OBEO (in PPR excel, statement), Hisbim (IPA docx), Airbus (SIDP), UNIT with Havelsan and Ford-Otosan
 
-6. **The reviewers private session** (30 min): [**11:45 - 12:15**]
+7. **The reviewers private session** (30 min): [**11:45 - 12:15**]
 
-7. **Feedback session** (15min): [**12:15 - 12:30**]
+8. **Feedback session** (15min): [**12:15 - 12:30**]
 
-8. **Lunch** (30 min) [**12:30 - 13:00**]
+9. **Lunch** (30 min) [**12:30 - 13:00**]
 
-8. Participants from project partners (13 People):
+10. Participants from project partners (13 People):
     - UNIT: Ferhat Erata, Dr. Moharram Challenger
     - KOÇSISTEM: Prof. Geylani Kardas, Hale Gezgen,
     - MANTIS: Prof. Erhan Mengüsoğlu
