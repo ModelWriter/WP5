@@ -6,7 +6,7 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
   - Review Chairman Introductory Speech, summarizing the main expectations and targets of the review.
 2. **Overview of the project** (15 min): [**09:00 - 09:15**] - Ferhat
   - The consortium structure (efforts and costs)
-  - Project industrialization triangle and business market
+  - Project industrialization triangle and business market ?
   - The project idea,
   - Overall Progress
     - Project Management infrasturecture bla bla (D.bla)
@@ -16,7 +16,6 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
     - Several prototypes are realized (D2.3.1)
     - Software Deliverables of technical work packages (WP2, WP3, WP4, WP6)
     - Design of each technical workpackage is proposed.
-    
     - List and Classify several most important ERAs
   - Present a single slide with all the deliverables due to date, and their current status
     - from PPR excel file
