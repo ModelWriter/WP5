@@ -20,7 +20,6 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
   - International Collaboration in the consortium
   - Open Source Campaign
   - Overview of Industrial Use Cases
-  - The project idea
 
 3.  **Use-cases and exploitation prospects** (5 min each => 45min):  [**09:15 - 10:00**]
     - France
