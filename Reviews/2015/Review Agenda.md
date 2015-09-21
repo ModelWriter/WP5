@@ -3,24 +3,25 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
 
 1. **Introduction** (10 min): [**09:00 - 09:10**]
   - Brief introduction of the main attendees by Project Leader
+  - The schedule of the day
   - Review Chairman Introductory Speech, summarizing the main expectations and targets of the review.
 2. **Overview of the project** (15 min): [**09:00 - 09:15**] - Ferhat
-  - The consortium structure (efforts and costs)
-  - Project industrialization triangle and business market ?
-  - The project idea,
-  - Overall Progress
-    - Project Management infrasturecture bla bla (D.bla)
-    - User Requirements is delivered (D1.3.2)
-    - Software Requirements are delivered based on industrial use cases (D1.2.4)
-    - Architecture is finalized (D6.1.2)
-    - Several prototypes are realized (D2.3.1)
-    - Software Deliverables of technical work packages (WP2, WP3, WP4, WP6)
-    - Design of each technical workpackage is proposed.
-    - List and Classify several most important ERAs
-  - Present a single slide with all the deliverables due to date, and their current status
-    - from PPR excel file
-    - 60/134 deliverables are submitted, some of them are initialized.  
-  - The schedule of the day
+  - The consortium structure
+  - Project industrialization triangle
+  - Key Contributions
+    - Knowledge Capture
+    - Knowledge extraction
+    - Consistency & Completeness Checking
+  - Technological Components & interactions
+  - Conceptual Architecture
+  - Work packages & Technical Innovations
+  - Overall Progress of first year in nutshell
+  - Workshops & Meetings
+  - International Collaboration in the consortium
+  - Open Source Campaign
+  - Overview of Industrial Use Cases
+  - The project idea
+
 3.  **Use-cases and exploitation prospects** (5 min each => 45min):  [**09:15 - 10:00**]
     - France
       - UC-FR-01: Synchronization between Models and Documentation (OBEO) - Yvan
@@ -111,7 +112,6 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
 
 6. **Summary of the current status, the achievements and the expectation (Exploitation)** (10min): [**11:30 - 11:45**] - Ferhat
     - Current status: how much we progressed (in WP base), how much deliverables are done/left
-
     - Achievement: text to RDF, Marker in text and model, linking the concepts
     - What is the next step: KB design, Integration for the 1st release
       - Integration Workshop in Germany, EclipseCon - Poster Session
