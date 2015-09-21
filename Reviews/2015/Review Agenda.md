@@ -109,7 +109,7 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
       - Alloy based controls
         - Show markers
 
-5. **Summary of the current status, the achievements and the expectation** (10min): [**11:30 - 11:45**] - Ferhat
+5. **Summary of the current status, the achievements and the expectation (Exploitation)** (10min): [**11:30 - 11:45**] - Ferhat
     - Current status: how much we progressed (in WP base), how much deliverables are done/left
 
     - Achievement: text to RDF, Marker in text and model, linking the concepts
