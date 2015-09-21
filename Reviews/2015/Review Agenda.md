@@ -16,7 +16,7 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
     - Several prototypes are realized (D2.3.1)
     - Software Deliverables of technical work packages (WP2, WP3, WP4, WP6)
     - Design of each technical workpackage is proposed.
-    - List and Classify ERAs
+    - List and Classify several most important ERAs
   - Present a single slide with all the deliverables due to date, and their current status
     - from PPR excel file
     - 60/134 deliverables are submitted, some of them are initialized.  
