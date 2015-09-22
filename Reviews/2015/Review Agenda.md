@@ -89,14 +89,39 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
        - User/Software Requirement Documents
        - User/Software Requirement Review Meeting Documents
    * Phase Three: (Ferhat)
-    Config: C:\Users\Mete\git\Demonstrations\eu.modelwriter.demonstration.requirements
+    Configuration File: /eu.modelwriter.demonstration.requirements/SimlifiedConfigurationModel.als (C:\Users\Mete\git\Demonstrations\eu.modelwriter.demonstration.requirements)
     Traceability: C:\Users\Mete\runtime-EclipseApplication\.modelwriter
-    - Show Alloy based Configuration Model, mention that set theory and first order logic
+    - Show Alloy based Configuration Model on Alloy Editor
     - Load and Parse Alloy file on MW Menu
     - Click Preferences on MW menu, show that it is populated, show sets and relations
     - Open "RMF_CustomerRequirementsSpecification.reqif" and "Customer Requirements Specification.md"
     - Divide the screen into two panes, keep the text editor at right, model at left as MW mockup
-    - "Mark with Type" -> UC - 1
+    - "Customer Requirements Specification.md"
+      - Atom1: "Customer Requirements Specification" <- Project
+      - Atom2: "UC-1 Create a new SpecObject" <- ContractRequirement
+       - Open the same file with XML editor and show the annotation
+      - Atom3: "UC-2 Edit SpecObject" <- ContractRequirement
+      - Atom4: "UC-3 Delete SpecObject" <- ContractRequirement
+      - Relate: (1,2) (1,3) (1,4)  
+      - Show Traceability
+    - "RMF_CustomerRequirementsSpecification.reqif"
+      - Atom5: "Customer Requirement Specification" <- SystemRequirement
+      - Atom6: "UC-1" <- SoftwareRequirement
+      - Atom7: "UC-2" <- SoftwareRequirement
+      - Atom8: "UC-3" <- SoftwareRequirement
+      - Relate: (5,6) (5,7) (5,8)
+      - Show Traceability
+      - Relate (2, 5)
+      - Show Traceability
+    - "/org.eclipse.rmf.reqif10/model/reqif10.ecore"
+      - Atom9: "SpecObject" <- Task
+      - Relate (7, 9)
+    - "/org.eclipse.rmf.reqif10/src/org/eclipse/rmf/reqif10/SpecObject.java"
+      - Atom10: "public interface SpecObject" <- Task
+      - Relate (9, 10)
+      - Show Traceability
+    - Show some navigation on relations, from a text mark go to a model mark etc.
+
 
      - Model Editor
         - Different types of models
