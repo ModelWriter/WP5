@@ -89,12 +89,14 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
        - User/Software Requirement Documents
        - User/Software Requirement Review Meeting Documents
    * Phase Three: (Ferhat)
+    Config: C:\Users\Mete\git\Demonstrations\eu.modelwriter.demonstration.requirements
+    Traceability: C:\Users\Mete\runtime-EclipseApplication\.modelwriter
     - Show Alloy based Configuration Model, mention that set theory and first order logic
     - Load and Parse Alloy file on MW Menu
     - Click Preferences on MW menu, show that it is populated, show sets and relations
     - Open "RMF_CustomerRequirementsSpecification.reqif" and "Customer Requirements Specification.md"
     - Divide the screen into two panes, keep the text editor at right, model at left as MW mockup
-    - 
+    - "Mark with Type" -> UC - 1
 
      - Model Editor
         - Different types of models
