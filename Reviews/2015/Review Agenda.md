@@ -1,6 +1,35 @@
 The agenda for the 1st ITEA review [**9:00 - 12:30**]:
 -------
 
+1. Introduction (10 min) [09:00 - 09:10]
+2. Overview of the project (20 min) [09:10 - 09:30]
+3. Use-cases and exploitation prospects (45 min) [09:30 - 10:15]
+  - UC-FR-01 (Yvan) : 6 mins
+  - UC-FR-02 (Yvan) : 4 mins
+  - UC-FR-03 (Anne) : 7,5 mins ?
+  - UC-FR-04 (Anne) : 7,5 mins ?
+  - UC-TR-01 (Ersan) : 4 mins
+  - UC-TR-02 (Ersan) : 3 mins
+  - UC-TR-03 (Ferhat) : 8 min (I need to make it short)
+  - UC-TR-04 (Eray) : 4
+  - UC-TR-05 (Geylani) :
+4. Progress Status per WP (45 min) [10:15 - 11:00]
+  - WP1 (Anne) : 6 mins
+  - WP2 (Claire) : ? mins
+  - WP3 (Ferhat) : ? mins
+  - WP4 (Erhan) : ? mins
+  - WP5 (Ferhat) : ? mins
+  - WP6 (Yvan) : ? mins
+  - WP7 (Yvan) : ? mins
+* Break (10 mins)
+5. Demonstrations (30 min): [11:10 - 11:40]
+6. Summary (achievements and exploitations) (5 min) [11:40 - 11:45]
+* Reviewers Private Section (30 min) [11:45 - 12:15]
+* Feedback Session (15min) [12:15 - 12:30]
+* Lunch (30 min) [12:30 - 13:00
+
+
+
 1. **Introduction** (10 min): [**09:00 - 09:10**]
   - Brief introduction of the main attendees by Project Leader
   - The schedule of the day
@@ -169,5 +198,20 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
 
 @ModelWriter/consortium
 
-
-- Mention the SA 
+- At the begining chairman will give an introductory speech
+- Mention the SA left and state that, mention sogeti host a workshop despite they are not funded. The situtation is covered. Mentioned Status of the PPR.
+- We have handled this stiuation very well.
+* Prepare a slide for the end of the overview section, Partners vs planned/spent, mentioned that reasons are already detailed in the PPR. (use figures based on PPR)
+- PCA signature starts soon, waiting for last remarks from one partner. It will complete until January.
+- indicate self funded partners
+- change color of yellow boxes
+- check deliverables, consistency of the deliverables
+- indicate self funded partners
+- International Collobration section, deep collaboraton in France and Turkey between partners, show dependecy between work packages.
+- International Collaboration, add LORIA,
+- Workshops, mention three most relevant ones
+- Tell exploitation prospects of UNIT in UC-TR-03
+- Tell why do we need this, that for use cases
+- Focus on needs and solution in UC presentations
+- correct the format of header of Eray's use case.
+* Prepare a slide as Marc explained for exploitation prospects
