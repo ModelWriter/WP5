@@ -168,3 +168,6 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
     - HAVELSAN: Dr. Eray Tuzun
 
 @ModelWriter/consortium
+
+
+- Mention the SA 
