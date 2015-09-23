@@ -215,3 +215,5 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
 - Focus on needs and solution in UC presentations
 - correct the format of header of Eray's use case.
 * Prepare a slide as Marc explained for exploitation prospects
+- Dissemination ensures your costumers know what they are working on. To make it compatible we use standards and open source APIs. To promote future solutions for your potential customers.
+present them a mean to achieve a goal. Collaboration between tool providers and End users
