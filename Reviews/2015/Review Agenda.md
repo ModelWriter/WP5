@@ -198,23 +198,20 @@ The agenda for the 1st ITEA review [**9:00 - 12:30**]:
 
 @ModelWriter/consortium
 
-- At the begining chairman will give an introductory speech
-
-- Mention the SA left and state that, mention sogeti host a workshop despite they are not funded. The situtation is covered. Mentioned Status of the PPR.
++ At the begining chairman will give an introductory speech
++ Mention the SA left and state that, mention sogeti host a workshop despite they are not funded. The situtation is covered. Mentioned Status of the PPR.
 - We have handled this stiuation very well.
 * Prepare a slide for the end of the overview section, Partners vs planned/spent, mentioned that reasons are already detailed in the PPR. (use figures based on PPR)
 - PCA signature starts soon, waiting for last remarks from one partner. It will complete until January.
-- indicate self funded partners
++ indicate self funded partners
 + change color of yellow boxes
 - check deliverables, consistency of the deliverables
-- indicate self funded partners
-- International Collobration section, deep collaboraton in France and Turkey between partners, show dependecy between work packages.
-- International Collaboration, add LORIA,
-- Workshops, mention three most relevant ones
++ International Collobration section, deep collaboraton in France and Turkey between partners, show dependecy between work packages.
++ International Collaboration, add LORIA,
++ Workshops, mention three most relevant ones
 - Tell exploitation prospects of UNIT in UC-TR-03
-- Tell why do we need this, that for use cases
-- Focus on needs and solution in UC presentations
-- correct the format of header of Eray's use case.
++ Tell why do we need this, that for use cases
++ Focus on needs and solution in UC presentations
++ correct the format of header of Eray's use case.
 * Prepare a slide as Marc explained for exploitation prospects
-- Dissemination ensures your costumers know what they are working on. To make it compatible we use standards and open source APIs. To promote future solutions for your potential customers.
-present them a mean to achieve a goal. Collaboration between tool providers and End users
++ Dissemination ensures your costumers know what they are working on. To make it compatible we use standards and open source APIs. To promote future solutions for your potential customers. present them a mean to achieve a goal. Collaboration between tool providers and End users
